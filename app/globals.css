@@ -33,6 +33,15 @@
     --ring: 0 0% 3.9%;
 
     --radius: 0.5rem;
+
+    --primary-base: #269747;
+    --dot-color: white;
+
+    --xs: 0px;
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
   }
 
   .dark {

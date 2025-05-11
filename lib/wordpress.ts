@@ -236,3 +236,44 @@ export async function searchAuthors(query: string): Promise<Author[]> {
 }
 
 export { WordPressAPIError };
+
+// FUNCIONES NUEVAS
+
+export async function getAllSlides(filterParams?: {
+  author?: string;
+  tag?: string;
+  category?: string;
+  search?: string;
+}): Promise<Post[]> {
+  const query: Record<string, any> = {
+    _embed: true,
+    per_page: 100,
+  };
+
+  if (filterParams?.search) {
+    query.search = filterParams.search;
+
+    if (filterParams?.author) {
+      query.author = filterParams.author;
+    }
+    if (filterParams?.tag) {
+      query.tags = filterParams.tag;
+    }
+    if (filterParams?.category) {
+      query.categories = filterParams.category;
+    }
+  } else {
+    if (filterParams?.author) {
+      query.author = filterParams.author;
+    }
+    if (filterParams?.tag) {
+      query.tags = filterParams.tag;
+    }
+    if (filterParams?.category) {
+      query.categories = filterParams.category;
+    }
+  }
+
+  const url = getUrl("/wp-json/wp/v2/slide", query);
+  return wordpressFetch<Post[]>(url);
+}
