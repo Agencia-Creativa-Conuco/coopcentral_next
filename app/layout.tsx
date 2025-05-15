@@ -1,7 +1,7 @@
-import "./globals.css";
+import "./globals.scss";
 
 import { Section, Container } from "@/components/craft";
-import { Inter as FontSans } from "next/font/google";
+import { Roboto_Slab as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { MobileNav } from "@/components/nav/mobile-nav";

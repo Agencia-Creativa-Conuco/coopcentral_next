@@ -1,12 +1,14 @@
 // Craft Imports
 import { Section, Container, Prose } from "@/components/craft";
 import HomeCover from "@/components/frontpage/homeCover";
+import HomeInfo from "@/components/frontpage/homeInfo";
 import {
   getAllSlides,
   getFeaturedMediaById,
   getPageById,
   getPageBySlug,
 } from "@/lib/wordpress";
+import styles from "./page.module.scss";
 
 // This page is using the craft.tsx component and design system
 export default async function Home() {
@@ -27,14 +29,11 @@ export default async function Home() {
   const { title, content, meta_box } = page;
 
   return (
-    <Section>
-      <Container>
-        <main className="space-y-6">
-          <HomeCover
-            {...{ slides, page, featured_media, title, content, meta_box }}
-          />
-        </main>
-      </Container>
-    </Section>
+    <main className={styles.main}>
+      <HomeCover
+        {...{ slides, page, featured_media, title, content, meta_box }}
+      />
+      <HomeInfo data={meta_box} />
+    </main>
   );
 }

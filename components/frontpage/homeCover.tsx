@@ -3,10 +3,11 @@
 import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "./homeCover.module.css";
+import styles from "./homeCover.module.scss";
 import Carousel from "react-slick";
 import Link from "next/link";
 import Image from "next/image";
+import CTA from "../CTA";
 
 interface Props {
   slides: any[];
@@ -127,9 +128,9 @@ export default function homeCover({
           autoplaySpeed={8000}
           pauseOnHover
           dots
-          appendDots={(dots) => (
+          appendDots={(dots: any) => (
             <ul className={styles.dots}>
-              {dots.map((item, index) => {
+              {dots.map((item: any, index: number) => {
                 return (
                   <div className={styles.dot} key={index}>
                     {item}
@@ -152,7 +153,7 @@ export default function homeCover({
                   <div className={styles.contentWrapper}>
                     <h2 className={styles.title}>{title.rendered}</h2>
                     <p className={styles.copy}>{copy}</p>
-                    {/* <CTA data={meta_box} /> */}
+                    <CTA data={meta_box} />
                   </div>
                 </div>
               </div>

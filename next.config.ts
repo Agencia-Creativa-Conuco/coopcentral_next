@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+const path = require("path");
 
 const nextConfig: NextConfig = {
   images: {
@@ -10,6 +11,9 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
   },
   async redirects() {
     return [

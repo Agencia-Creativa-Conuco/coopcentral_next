@@ -1,0 +1,5 @@
+@use "./mixins.scss" as mix;
+
+.cta {
+  @include mix.cta();
+}
