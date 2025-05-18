@@ -4,6 +4,7 @@ import { getProductBySlug } from "@/lib/wordpress";
 import Cover from "./cover";
 import Info from "./info";
 import Requirements from "./requirements";
+import Guide from "./guide";
 
 export default async function Product({
   params,
@@ -20,7 +21,7 @@ export default async function Product({
       <Cover page={page} />
       <Info page={page} />
       <Requirements page={page} />
-      {/* <ProductGuide /> */}
+      <Guide page={page} />
     </main>
   );
 }
