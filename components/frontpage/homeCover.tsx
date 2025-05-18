@@ -17,7 +17,7 @@ interface Props {
   meta_box: any;
 }
 
-export default function homeCover({
+export default function HomeCover({
   slides = [],
   title,
   content,
@@ -40,11 +40,12 @@ export default function homeCover({
   return (
     <section className={styles.section}>
       <div className={styles.carouselContainer}>
+        {/* @ts-ignore */}
         <Carousel
           arrows={false}
           fade
           asNavFor={nav2}
-          ref={(slider) => (slider1 = slider)}
+          ref={(slider: any) => (slider1 = slider)}
         >
           {items.map((slide, index) => {
             const { featured_media, meta_box } = slide;
@@ -121,6 +122,7 @@ export default function homeCover({
         </Carousel>
       </div>
       <div className={styles.carouselContainer}>
+        {/* @ts-ignore */}
         <Carousel
           fade
           arrows={false}
@@ -140,7 +142,7 @@ export default function homeCover({
             </ul>
           )}
           asNavFor={nav1}
-          ref={(slider) => (slider2 = slider)}
+          ref={(slider: any) => (slider2 = slider)}
         >
           {items.map((slide, index) => {
             const { title, meta_box } = slide;

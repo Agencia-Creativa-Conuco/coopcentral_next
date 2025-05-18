@@ -19,6 +19,13 @@
       order: 1;
     }
   }
+
+  :global(.slick-dots) {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 2rem;
+  }
 }
 
 .media {
@@ -77,13 +84,6 @@
 
 .copy {
   white-space: break-spaces;
-}
-
-:global(.slick-dots) {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 2rem;
 }
 
 .dot {

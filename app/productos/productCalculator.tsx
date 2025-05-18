@@ -2,7 +2,11 @@ import React from "react";
 // import LoanCalculator from "../../tools/loan-calculator";
 import styles from "./productCalculator.module.scss";
 
-export default async function ProductsCalcultor({ page }) {
+interface Props {
+  page: any;
+}
+
+export default async function ProductsCalcultor({ page }: Props) {
   const { meta_box } = page;
 
   const { products_calculator_title = "Calculadora de préstamos" } = meta_box;

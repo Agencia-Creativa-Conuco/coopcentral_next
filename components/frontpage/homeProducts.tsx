@@ -17,13 +17,13 @@ export default async function HomeProducts({ page }: Props) {
         <h2 className={styles.title}>{products_title}</h2>
         <div className={styles.products}>
           {products
-            .sort((a, b) => {
+            .sort((a: any, b: any) => {
               return (
                 (parseInt(a.meta_box.product_home_order) || 1000000) -
                 (parseInt(b.meta_box.product_home_order) || 1000000)
               );
             })
-            .map((product, index) => {
+            .map((product: any, index: number) => {
               if (index > 2) {
                 return null;
               }
