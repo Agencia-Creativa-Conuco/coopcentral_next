@@ -14,6 +14,8 @@ export default function ThemeProvider({ children }: providerProps) {
   const [token, setToken] = useState("");
   const [hsFormLoaded, setHsFormLoaded] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
+  const [isModalOpen, openModal] = useState(false);
+  const [modalBody, setModalBody] = useState(false);
 
   return (
     <CustomContext.Provider
@@ -23,6 +25,10 @@ export default function ThemeProvider({ children }: providerProps) {
         token,
         setToken,
         startTime,
+        isModalOpen,
+        openModal,
+        modalBody,
+        setModalBody,
       }}
     >
       {children}

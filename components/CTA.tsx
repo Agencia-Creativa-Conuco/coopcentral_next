@@ -1,7 +1,10 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import styles from "./CTA.module.scss";
+import { getURL } from "@/lib/utils";
+import Form from "./formulario";
+import { CustomContext } from "@/components/theme/custom-provider";
 
 interface Props {
   data: any;
@@ -15,18 +18,19 @@ export default function CTA({ data, prefix = "", ...props }: Props) {
   const cta_url = data[prefix + "cta_url"];
   const cta_form = data[prefix + "cta_form"];
 
+  const { openModal, setModalBody }: any = useContext(CustomContext);
+
   return parseInt(cta) ? (
     <>
       {cta_type == "link" ? (
-        <Link href={cta_url} {...props} className={styles.cta}>
+        <Link href={getURL(cta_url)} {...props} className={styles.cta}>
           {cta_text}
         </Link>
       ) : (
         <button
           onClick={(e) => {
-            // openModal({
-            //   body: <Form formId={cta_form} cardStyle={false} />,
-            // });
+            setModalBody(<Form formId={cta_form} />);
+            openModal(true);
           }}
           className={styles.cta}
           {...props}

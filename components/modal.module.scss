@@ -1,0 +1,119 @@
+@use "@/styles/mixins.scss" as *;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modal {
+  @include gap();
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  opacity: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  z-index: 20000;
+  animation: fadeIn 0.2s ease-out;
+
+  &:global(.active) {
+    display: flex;
+    left: 0;
+    opacity: 1;
+    right: 0;
+    transition: opacity 0.25s ease-out;
+    align-items: baseline;
+    justify-content: center;
+  }
+}
+
+.inner {
+  @include container();
+  width: 100%;
+}
+
+.container {
+  max-width: 65rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.card {
+  @include gap();
+  background: #fff;
+  overflow: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  border-radius: 5px;
+  animation: slideDown 0.4s ease-out;
+}
+
+.cardWrapper {
+  height: 100%;
+  align-content: baseline;
+}
+
+.header {
+  background-color: var(--gray-lighter);
+  align-self: baseline;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 70px;
+  text-align: left;
+  color: var(--primary-base);
+  font-weight: bold;
+}
+
+.modalTitle {
+  margin: 0;
+}
+
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  svg {
+    fill: var(--primary-base);
+    display: inline-block;
+    transform: scale(1.2);
+  }
+}
+
+.body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

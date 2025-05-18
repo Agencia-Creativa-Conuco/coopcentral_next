@@ -12,7 +12,6 @@ export function getURL(path = "") {
 
   if (isExternal) {
     const url = new URL(path);
-    console.log(hostname, url.hostname);
     if (url.hostname === hostname) {
       return url.pathname;
     }

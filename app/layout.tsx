@@ -19,6 +19,7 @@ import type { Metadata } from "next";
 import Header from "@/components/header";
 import { getMenu, getPostById, getSettings } from "@/lib/wordpress";
 import CustomProvider from "@/components/theme/custom-provider";
+import Modal from "@/components/modal";
 
 const font = FontSans({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default async function RootLayout({
             <Header settings={settings} menu={menuHeader} />
             {children}
             <Footer />
+            <Modal />
           </CustomProvider>
         </ThemeProvider>
         <Analytics />
