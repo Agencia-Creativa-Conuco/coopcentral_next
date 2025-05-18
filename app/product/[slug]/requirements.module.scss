@@ -1,0 +1,101 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  background-color: #81d977;
+  margin-top: 15rem;
+  padding-bottom: 10rem;
+  position: relative;
+  padding: 8rem 0;
+  @include mq(md) {
+    padding: 10rem;
+    padding-bottom: 20rem;
+    margin-top: 20rem;
+  }
+}
+
+.container {
+  @include container();
+}
+
+.top {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 37rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -137%);
+  @include mq(md) {
+    transform: translate(0, -150%);
+  }
+  @include mq(lg) {
+    transform: translate(0, -135%);
+  }
+}
+
+.icon {
+  background-color: var(--primary-dark);
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  position: relative;
+  @include mq(lg) {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.iconMedia {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 50%;
+  height: 50%;
+  color: white;
+  svg {
+    width: 100%;
+  }
+}
+
+.title {
+  text-align: left;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.content {
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.item {
+  color: white;
+  margin-left: 1.5rem;
+  margin-top: 5%;
+  position: relative;
+
+  /* YELLOW LIST STYLE */
+  &:before {
+    content: "";
+    background-color: var(--secondary-base);
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -2rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}

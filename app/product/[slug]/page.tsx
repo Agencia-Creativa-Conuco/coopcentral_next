@@ -3,6 +3,7 @@ import styles from "./page.module.scss";
 import { getProductBySlug } from "@/lib/wordpress";
 import Cover from "./cover";
 import Info from "./info";
+import Requirements from "./requirements";
 
 export default async function Product({
   params,
@@ -18,7 +19,7 @@ export default async function Product({
     <main className={styles.container}>
       <Cover page={page} />
       <Info page={page} />
-      {/* <ProductRequirements /> */}
+      <Requirements page={page} />
       {/* <ProductGuide /> */}
     </main>
   );
