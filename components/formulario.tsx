@@ -4,18 +4,23 @@ import React, { useState, useEffect } from "react";
 import HubspotForm from "react-hubspot-form";
 import styles from "./formulario.module.scss";
 
+interface Props {
+  formId: string;
+  loadingHeight?: string;
+  cardStyle?: boolean;
+}
+
 export default function Form({
   formId = "",
   loadingHeight = "100%",
-  cardStyle = true,
   ...props
-}) {
+}: Props) {
   const hs_id = "20235970";
 
   const [submited, setSubmited] = useState(false);
 
   return formId ? (
-    <div className={styles.formContainer} {...{ cardStyle, ...props }}>
+    <div className={styles.formContainer} {...{ ...props }}>
       {!submited ? (
         <div className={styles.formCut}>
           <HubspotForm

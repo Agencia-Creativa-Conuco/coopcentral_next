@@ -1,0 +1,111 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  @include gap();
+  padding-bottom: 20%;
+  background-color: white;
+  position: relative;
+
+  /*WHITE SECTION DECO*/
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    padding-bottom: 120rem;
+    width: 300%;
+    border-radius: 50%;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -10%);
+    @include mq(md) {
+      width: 200%;
+    }
+  }
+
+  /* GREEN DECORATION */
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: #81d977;
+    padding-bottom: 40%;
+    width: 25%;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    transform: translate(60%, 0%) rotate(-60deg);
+    z-index: 1;
+  }
+}
+
+.formContainer {
+}
+
+.container {
+  @include container();
+}
+
+.decoSection {
+  padding-bottom: 10rem;
+}
+
+.form {
+  @include card();
+  margin-top: 4rem;
+  max-width: 65rem;
+  margin: 0 auto;
+}
+
+.downloadCard {
+  max-width: 57rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(md) {
+    gap: 2rem;
+    grid-template-columns: 15rem 1fr;
+  }
+}
+
+.content {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+  @include mq(md) {
+    text-align: left;
+    margin: 0;
+    order: 2;
+  }
+}
+
+.downloadBox {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.downloadIcon {
+  color: var(--primary-base);
+  margin-bottom: 2rem;
+  svg {
+    margin: 0 auto;
+  }
+}
+
+.link {
+  @include cta();
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  @include mq(md) {
+    text-align: left;
+  }
+}
+
+.formTitle {
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 4rem;
+}

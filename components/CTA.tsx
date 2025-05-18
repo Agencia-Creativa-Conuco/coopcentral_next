@@ -28,6 +28,7 @@ export default function CTA({ data, prefix = "", ...props }: Props) {
             //   body: <Form formId={cta_form} cardStyle={false} />,
             // });
           }}
+          className={styles.cta}
           {...props}
         >
           {cta_text}
