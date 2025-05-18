@@ -1,0 +1,151 @@
+@use "@/styles/mixins.scss" as *;
+
+.item {
+  list-style: none;
+  margin: 0;
+  color: var(--primary-base);
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.15s ease-in-out;
+  &:global(.isHeader) {
+    text-align: center;
+    color: black !important;
+    .itemLink,
+    .itemLabel {
+      font-weight: initial;
+    }
+    @include mq(lg) {
+      color: white !important;
+    }
+  }
+  &:before {
+    content: "";
+    transition: all 0.15s ease-in-out;
+  }
+  &:hover {
+    & > .labelWrapper {
+      background-color: rgba(var(--primary-base), 0.1);
+    }
+    @include mq(lg) {
+      &:before {
+        content: "";
+        background-color: var(--secondary-base);
+        position: absolute;
+        bottom: 0;
+        width: 40%;
+        height: 0.2rem;
+        left: 50%;
+        transform: translate(-50%, -200%);
+      }
+    }
+  }
+
+  a,
+  & > span {
+    text-decoration: none !important;
+    color: inherit;
+    display: block;
+    flex: 1;
+  }
+}
+
+.labelWrapper {
+  display: flex;
+  gap: 0.7rem;
+  // background-color: rgb(187 187 187 / 10%);
+  border-radius: 0.2rem;
+  justify-content: space-between;
+}
+
+@mixin itemText {
+  display: block !important;
+  line-height: 1.2;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 1rem;
+  font-family: var(--poppins), sans-serif;
+  font-weight: inherit;
+  &:hover {
+    text-decoration: underline;
+
+    @include mq(lg) {
+      text-decoration: none;
+    }
+  }
+
+  &:global(.hasChildren) {
+    padding-right: 4rem;
+  }
+}
+.itemLink {
+  @include itemText();
+}
+
+.itemLabel {
+  @include itemText();
+
+  span {
+    text-transform: capitalize !important;
+    color: var(--primary-base);
+  }
+}
+
+.expand {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  cursor: pointer;
+  transition: 0.3s transform ease-in-out;
+
+  &:global(.expanded) {
+    transform: rotate(-90deg);
+  }
+}
+
+.expandWrapper {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+
+  svg,
+  img,
+  embed,
+  object {
+    width: 100%;
+  }
+}
+
+.listWrapper {
+  overflow: hidden;
+  background-color: rgb(187 187 187 / 10%);
+  border-radius: 0.2rem;
+  opacity: 0;
+
+  li {
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  &:global(.active) {
+    opacity: 1;
+  }
+}
+
+.list {
+  transition: all 0.25s ease-in-out;
+  opacity: 0;
+  margin-top: -1920px;
+
+  &:global(.active) {
+    opacity: 1;
+    margin-top: 0;
+  }
+}

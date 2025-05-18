@@ -1,0 +1,50 @@
+@use "@/styles/mixins.scss" as *;
+
+.menu {
+  margin: 0;
+}
+
+.container {
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 100%;
+  &:global(.isHeader) {
+    background-color: white;
+    border: 0.2rem solid white;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10rem 10rem;
+    @include mq(lg) {
+      background-color: var(--primary-base);
+      position: relative;
+      border-radius: 2rem;
+      padding: 0;
+      padding-left: 1rem;
+    }
+  }
+
+  &:global(.split) {
+    @include mq(lg) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mq(xl) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+.block {
+  z-index: initial;
+}
+
+.label {
+  // color: ${props.labelColor};
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}

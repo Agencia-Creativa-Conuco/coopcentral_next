@@ -277,3 +277,13 @@ export async function getAllSlides(filterParams?: {
   const url = getUrl("/wp-json/wp/v2/slide", query);
   return wordpressFetch<Post[]>(url);
 }
+
+export async function getSettings() {
+  const url = getUrl("/wp-json/site/v1/settings/");
+  return wordpressFetch<Post[]>(url);
+}
+
+export async function getMenu(name: string) {
+  const url = getUrl(`/wp-json/menus/v1/menus/${name}`);
+  return wordpressFetch<Post[]>(url);
+}

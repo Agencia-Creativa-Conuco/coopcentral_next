@@ -4,9 +4,7 @@ import { Section, Container } from "@/components/craft";
 import { Roboto_Slab as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { MobileNav } from "@/components/nav/mobile-nav";
 import { Analytics } from "@vercel/analytics/react";
-import { Button } from "@/components/ui/button";
 
 import { mainMenu, contentMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
@@ -18,6 +16,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { Metadata } from "next";
+import Header from "@/components/header";
+import { getMenu, getPostById, getSettings } from "@/lib/wordpress";
+import CustomProvider from "@/components/theme/custom-provider";
 
 const font = FontSans({
   subsets: ["latin"],
@@ -34,11 +35,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getSettings();
+  const menuHeader = await getMenu("main");
+  const menuFooter = await getMenu("footer");
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -49,60 +54,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Nav />
-          {children}
-          <Footer />
+          <CustomProvider>
+            <Header settings={settings} menu={menuHeader} />
+            {children}
+            <Footer />
+          </CustomProvider>
         </ThemeProvider>
         <Analytics />
       </body>
     </html>
   );
 }
-
-const Nav = ({ className, children, id }: NavProps) => {
-  return (
-    <nav
-      className={cn("sticky z-50 top-0 bg-background", "border-b", className)}
-      id={id}
-    >
-      <div
-        id="nav-container"
-        className="max-w-5xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center"
-      >
-        <Link
-          className="hover:opacity-75 transition-all flex gap-4 items-center"
-          href="/"
-        >
-          <Image
-            src={Logo}
-            alt="Logo"
-            loading="eager"
-            className="dark:invert"
-            width={42}
-            height={26.44}
-          ></Image>
-          <h2 className="text-sm">{siteConfig.site_name}</h2>
-        </Link>
-        {children}
-        <div className="flex items-center gap-2">
-          <div className="mx-2 hidden md:flex">
-            {Object.entries(mainMenu).map(([key, href]) => (
-              <Button key={href} asChild variant="ghost" size="sm">
-                <Link href={href}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </Link>
-              </Button>
-            ))}
-          </div>
-          <Button asChild className="hidden sm:flex">
-            <Link href="https://github.com/9d8dev/next-wp">Get Started</Link>
-          </Button>
-          <MobileNav />
-        </div>
-      </div>
-    </nav>
-  );
-};
 
 const Footer = () => {
   return (

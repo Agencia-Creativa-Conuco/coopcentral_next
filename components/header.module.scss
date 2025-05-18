@@ -1,0 +1,119 @@
+@use "@/styles/mixins.scss" as *;
+
+.coopV {
+  display: block;
+  text-decoration: none;
+  color: white;
+  background-color: white;
+  margin: 0 0.5rem;
+  border: 0.2rem solid white;
+  height: 4rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 2rem;
+  border-radius: 10rem;
+  display: inline-block;
+  font-size: 1.4rem;
+}
+
+.header {
+  position: relative;
+  z-index: 100;
+  transition: background 0.2s ease-in-out;
+  padding: 0.25rem 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.container {
+  @include container();
+  @include gap();
+
+  display: grid;
+  margin-top: -2.5rem;
+  @include mq(lg) {
+    margin-top: -3.5rem;
+    grid-template-columns: 15rem 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .menu {
+    position: relative;
+    display: none;
+    @include mq(lg) {
+      display: initial;
+      z-index: 2;
+    }
+
+    &:global(.active) {
+      display: initial;
+      @include mq(lg) {
+      }
+    }
+  }
+}
+
+.logo {
+  display: block;
+  position: relative;
+  width: 12rem;
+  z-index: 1;
+  @include mq(lg) {
+    width: 15rem;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+  }
+}
+.deco {
+  position: absolute;
+  background: white;
+  width: 180%;
+  padding-bottom: 125%;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -70%);
+  border-radius: 50%;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.gadgets {
+  @include gap();
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+}
+
+.menuButton {
+  background-color: var(--primary-base);
+  border-radius: 50%;
+  padding: 1rem;
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  @include mq(lg) {
+    display: none;
+  }
+
+  svg {
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+}
