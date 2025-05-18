@@ -1,0 +1,16 @@
+import React from "react";
+import styles from "./page.module.scss";
+import ServiceCover from "./serviciosCover";
+import { getPageBySlug } from "@/lib/wordpress";
+import ServiceInfo from "./serviciosInfo";
+
+export default async function ServicePage() {
+  const page = await getPageBySlug("servicios");
+
+  return (
+    <div className={styles.container}>
+      <ServiceCover page={page} />
+      <ServiceInfo page={page} />
+    </div>
+  );
+}

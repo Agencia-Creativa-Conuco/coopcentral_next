@@ -1,0 +1,122 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  @include gap();
+  padding-top: 5%;
+  padding-bottom: 40%;
+  background-color: #298a43;
+  overflow: hidden;
+  position: relative;
+  @include mq(md) {
+    padding-bottom: 10%;
+  }
+
+  /* BIG GREEN CIRCLE DECORATION */
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: #64bf49;
+    width: 200%;
+    padding-bottom: 200%;
+    right: 0;
+    top: 10%;
+    border-radius: 100%;
+    transform: translate(50%, 0%);
+    opacity: 0.4;
+  }
+}
+
+.container {
+  @include container();
+}
+
+.title {
+  text-align: center;
+  margin-top: 15%;
+  color: white;
+  margin-bottom: 4rem;
+  @include mq(md) {
+    margin-bottom: 10rem;
+  }
+}
+
+.service {
+  padding: 3rem;
+  position: relative;
+  margin-bottom: 4rem;
+  //   background-color: white;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+
+  @include mq(md) {
+    gap: 10rem;
+    padding: 6rem;
+    margin-bottom: 10rem;
+    border-radius: 20rem;
+  }
+
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    background-color: white;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    @include mq(md) {
+      border-radius: 50rem;
+      width: 500%;
+      height: 100%;
+    }
+  }
+  @include mq(md) {
+    &:nth-of-type(odd) {
+      grid-template-columns: 10rem 1fr;
+
+      &::before {
+        left: 0;
+      }
+      .image {
+        order: 1;
+      }
+      .content {
+        order: 2;
+      }
+    }
+    &:nth-of-type(even) {
+      grid-template-columns: 1fr 10rem;
+      &::before {
+        right: 0;
+      }
+      .image {
+        order: 2;
+      }
+      .content {
+        order: 1;
+      }
+    }
+  }
+}
+
+.image {
+  aspect-ratio: 1/1;
+  width: 10rem;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 0 auto;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.name {
+  margin-bottom: 2rem;
+}
