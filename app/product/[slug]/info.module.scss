@@ -1,0 +1,74 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  margin-bottom: 15rem;
+  @include mq(md) {
+    margin-bottom: 20rem;
+  }
+}
+
+.container {
+  display: grid;
+  align-items: center;
+  @include mq(lg) {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+.info {
+  max-width: 57rem;
+  margin: 0 auto;
+}
+
+.title {
+  @include h2m();
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.media {
+  position: relative;
+  //   order: 1;
+  @include mq(lg) {
+    order: 2;
+  }
+}
+
+.mediaWrapper {
+  clip-path: ellipse(97% 39% at 95% 55%);
+  transform: rotate(-15deg);
+}
+
+.image {
+  transform: rotate(15deg);
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(50%, -100%);
+  width: 20rem;
+  max-width: 15rem;
+}
+
+.iconWrapper {
+  padding: 20%;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+}
+
+.shortLine {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  transform: translate(0, -40%);
+}
+
+.content {
+  @include container();
+}

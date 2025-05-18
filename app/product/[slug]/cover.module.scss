@@ -1,0 +1,51 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  position: relative;
+}
+
+.container {
+  display: grid;
+  align-items: center;
+  @include mq(lg) {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.content {
+  @include mq(lg) {
+    max-width: 57rem;
+    margin: 0 auto;
+  }
+}
+
+.title {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.copy {
+  white-space: break-spaces;
+}
+
+.media {
+  position: relative;
+}
+
+.logo {
+  /* position: relative; */
+  transform: rotate(35deg);
+  clip-path: ellipse(80% 80% at 10% 30%);
+  img {
+    transform: rotate(-35deg);
+  }
+}
+
+.longLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  transform: translate(-5%, 32%) rotate(2deg);
+}

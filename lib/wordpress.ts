@@ -278,6 +278,12 @@ export async function getAllSlides(filterParams?: {
   return wordpressFetch<Post[]>(url);
 }
 
+export async function getProductBySlug(slug: string): Promise<Post> {
+  const url = getUrl("/wp-json/wp/v2/product", { slug });
+  const response = await wordpressFetch<Post[]>(url);
+  return response[0];
+}
+
 export async function getSettings() {
   const url = getUrl("/wp-json/site/v1/settings/");
   return wordpressFetch<Post[]>(url);
