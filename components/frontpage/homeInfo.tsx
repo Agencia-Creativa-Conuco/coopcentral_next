@@ -36,7 +36,7 @@ export default async function HomeInfo({ data }: Props) {
       </div>
 
       <div className={styles.decoOval} />
-      <div className={styles.decoRoundLInes} />
+      <div className={styles.decoRoundLines} />
     </section>
   );
 }

@@ -1,0 +1,94 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  position: relative;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  /*BIG GREEN OVAL DECORATION AT TOP*/
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #64bf49;
+    border-radius: 50%;
+    padding-bottom: 50%;
+    width: 60%;
+    transform: translate(90%, -15%) rotate(35deg);
+  }
+
+  /*BIG GREEN OVAL DECORATION AT BOTTOM*/
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #64bf49;
+    border-radius: 50%;
+    padding-bottom: 50%;
+    width: 60%;
+    transform: translate(-85%, 60%) rotate(-50deg);
+  }
+}
+
+.title {
+  @include h2m();
+  text-align: center;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  font-weight: initial;
+}
+
+.products {
+  @include container();
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: #565656;
+}
+
+.card {
+  max-width: 33rem;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  padding: 4rem 2rem;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 2.5rem;
+  transition: all 0.25s ease-in-out;
+
+  @include mq(lg) {
+    box-shadow: none;
+    &:hover {
+      box-shadow: 0 0 40px var(--gray-dark);
+    }
+  }
+
+  img {
+    width: 8rem;
+  }
+}
+
+.content {
+}
+
+.copy {
+  white-space: break-spaces;
+}
+
+.name {
+  margin: 3rem auto;
+}

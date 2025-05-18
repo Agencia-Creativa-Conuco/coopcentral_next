@@ -1,0 +1,26 @@
+@use "./mixins.scss" as *;
+
+.section {
+  padding-bottom: 20%;
+  @include gap();
+  margin-top: 10rem;
+}
+
+.container {
+  @include container();
+}
+
+.form {
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 2rem;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+}

@@ -1,0 +1,84 @@
+@use "@/styles/mixins" as *;
+
+.section {
+  @include gap();
+}
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  @include mq(lg) {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.content {
+  @include mq(lg) {
+    max-width: 57rem;
+    margin: 0 auto;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.copy {
+  margin-bottom: 2rem;
+  white-space: break-spaces;
+}
+
+.media {
+  position: relative;
+  /*SMALL OVAL GREEN DECORATION, NEAR AT IMAGE */
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: #64bf49;
+    padding-bottom: 8%;
+    width: 15%;
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, 150%);
+    z-index: 1;
+  }
+}
+
+.mediaLogo {
+  clip-path: ellipse(70% 40% at 30% 45%);
+  transform: translate(-15%, 0) rotate(-15deg);
+  background-color: lightgray;
+  width: 115%;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    transform: translate(15%, 0) rotate(15deg);
+    aspect-ratio: 5/3.75;
+  }
+}
+
+.logoCover {
+  transform: translate(15%, 0) rotate(15deg);
+}
+
+.shortLine {
+  position: absolute;
+  top: 43%;
+  right: 0%;
+  width: 10%;
+  transform: translate(-25%, 20%) rotate(0deg);
+}
+
+.longLine {
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 50%;
+  transform: translate(0, 26%) rotate(9.5deg);
+}

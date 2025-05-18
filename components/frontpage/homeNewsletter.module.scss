@@ -1,0 +1,112 @@
+@use "./mixins.scss" as *;
+
+.section {
+  @include gap();
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+}
+
+.container {
+  @include container();
+}
+
+.wrapper {
+  position: relative;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  &:before {
+    border-radius: 2.5rem;
+    border: 1.2px solid var(--gray-base);
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    @include mq(md) {
+      width: 300%;
+      border-radius: 50rem;
+    }
+  }
+}
+
+.content {
+  padding: 1.5rem;
+  position: relative;
+  order: 1;
+
+  @include mq(sm) {
+    padding: 3rem;
+  }
+}
+
+.title {
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.description {
+}
+
+.media {
+  order: 1;
+  position: relative;
+  width: 20rem;
+  margin: 0 auto;
+  margin-top: -10rem;
+  @include mq(md) {
+    order: 2;
+    width: initial;
+    margin-top: initial;
+  }
+
+  /* LIGHTGREEN BIG OVAL DECO */
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: #82c684;
+    padding-bottom: 20%;
+    width: 30%;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, -50%);
+  }
+
+  /* SMALL GREEN OVAL DECO */
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: #82c684;
+    padding-bottom: 10%;
+    width: 15%;
+    right: 0;
+    bottom: 0;
+    border-radius: 60%;
+    transform: translate(-100%, 0);
+  }
+}
+
+.mediaWrapper {
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+}
+
+.shortLine {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20%;
+  transform: rotate(-14deg);
+}

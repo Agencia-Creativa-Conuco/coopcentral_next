@@ -28,10 +28,10 @@ export default function homeCover({
     ? slides.sort((a, b) => a.menu_order - b.menu_order)
     : [{ featured_media, title, content, meta_box }];
 
-  const [nav1, setNav1] = useState(null);
-  const [nav2, setNav2] = useState(null);
-  let slider1 = [];
-  let slider2 = [];
+  const [nav1, setNav1] = useState();
+  const [nav2, setNav2] = useState();
+  let slider1: any = [];
+  let slider2: any = [];
 
   useEffect(() => {
     setNav1(slider1);

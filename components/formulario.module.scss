@@ -1,0 +1,22 @@
+@use "./mixins.scss" as *;
+
+.formContainer {
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+.formCut {
+  padding: 0 0.1rem;
+  overflow: hidden;
+  iframe {
+    width: 100%;
+    display: block;
+    margin-bottom: -6.5rem;
+  }
+}
+
+.message {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}

@@ -1,0 +1,181 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  @include gap();
+  margin-top: -5rem;
+  padding-top: 35%;
+  padding-bottom: 5%;
+  position: relative;
+  overflow: hidden;
+  box-sizing: content-box;
+
+  /* FIRST GREEN DARK SECTION*/
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: #298a43;
+    width: 300%;
+    padding-bottom: 300%;
+    border-radius: 50%;
+    right: 0;
+    top: 0%;
+    transform: translate(50%, -0rem);
+    z-index: -1;
+  }
+
+  /* LIGHTGREEN OVAL SECTION DECORATION */
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: #54bf48;
+    width: 200%;
+    padding-bottom: 200%;
+    border-radius: 50%;
+    right: 0;
+    top: 20%;
+    transform: translate(30%, -0rem);
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  @include mq(lg) {
+    padding-top: 20%;
+    padding-bottom: 5%;
+    margin-top: -10rem;
+  }
+}
+
+.container {
+  @include container();
+}
+
+.wrapper {
+  padding: 1.5rem;
+  position: relative;
+  /* z-index: 5; */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include mq(lg) {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  @include mq(sm) {
+    padding: 3rem;
+  }
+  @include mq(md) {
+    padding: 4rem;
+  }
+}
+
+.content {
+  text-align: center;
+  order: 2;
+  @include mq(lg) {
+    text-align: left;
+    order: 1;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  @include mq(lg) {
+    text-align: left;
+  }
+}
+
+.name {
+  text-align: center;
+  @include mq(lg) {
+    text-align: left;
+  }
+}
+
+.list {
+  text-align: initial;
+  list-style: none;
+}
+
+.item {
+  color: var(--primary-base);
+  margin-left: 0;
+  margin-top: 5%;
+  position: relative;
+
+  /* YELLOW LIST STYLE */
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: var(--secondary-base);
+    left: 0;
+    top: 0;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transform: translate(-1.5rem, 80%);
+  }
+}
+
+.media {
+  order: 1;
+  @include mq(lg) {
+    order: 2;
+  }
+}
+
+.mediaLogo {
+  position: relative;
+  margin: 0 auto;
+  max-width: 20rem;
+  margin-top: -10rem;
+  margin-bottom: 2rem;
+  @include mq(sm) {
+    max-width: 32rem;
+    margin-top: -16rem;
+  }
+  @include mq(lg) {
+    margin: -30% auto;
+    margin-right: -40%;
+    max-width: initial;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: var(--secondary-base);
+    right: 20%;
+    top: 0%;
+    padding-bottom: 18%;
+    width: 18%;
+    border-radius: 50%;
+    transform: translate(0, -40%);
+    z-index: 5;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}
+
+.shortLine {
+  position: absolute;
+  top: 0;
+  left: 43%;
+  width: 13%;
+  transform: translate(0, -85%);
+}
+
+.longLine {
+  position: absolute;
+  top: 0;
+  left: 18%;
+  width: 20%;
+  transform: translate(0, -50%) rotate(-2deg);
+}

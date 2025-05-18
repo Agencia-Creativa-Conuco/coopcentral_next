@@ -1,0 +1,236 @@
+@use "@/stles/mixins.scss" as *;
+
+
+const Calculator = styled.div`
+    ${({bgColor="#FAFAFA"})=>css`
+        /* background-color: ${bgColor}; */
+        /* box-shadow: 0 0 1rem rgba(0,0,0,0.15); */
+        /* border-radius: 2rem; */
+        padding: 4rem 1.5rem;
+        ${mq.lg}{
+            padding: 4rem;
+        }
+    `}
+`;
+
+const Form = styled.form`
+    border-radius: 2rem;
+    margin: 0;
+`;
+
+const Switch = styled.label`
+    margin-bottom: 2rem;
+    display: block;
+`;
+
+const SwitchInput = styled.input``;
+
+const SwitchText = styled.span`
+    margin-left: 1rem;
+`;
+
+const Inputs = styled.div`
+    margin-bottom: 2rem;
+    ${mq.md}{
+        margin-bottom: initial;
+    }
+`;
+
+const InputWrapper = styled.div`
+    margin-bottom: 2rem;
+`;
+
+const Input = styled.input`
+    ${({bgColor="#26974711", textColor="green"})=>css`
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        border: none;
+        line-height: 1;
+        padding: 15px;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        background-color: ${bgColor};
+        color: ${textColor};
+        &:focus{
+            outline: initial;
+            border-color: red;
+        }
+        ${mq.sm}{
+            font-size: 20px;
+        }
+        ${mq.lg}{
+            font-size: 20px;
+        }
+    `}
+`;
+
+const InputError = styled.p`
+    ${({color = "red"})=>css`
+        color: ${color};
+    `}
+`;
+
+const Message = styled.textarea`
+    ${({color="#F5F5F5"})=>css`
+        display: block;
+        width: 100%;
+        height: 15rem;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border: none;
+        line-height: 1;
+        padding: 15px;
+        box-shadow: 0 .5rem .5rem rgba(0,0,0,0.1);
+        border-radius: 0.5rem;
+        font-weight: bold;
+        &:focus{
+            outline: initial;
+            border-color: red;
+        }
+        ${mq.sm}{
+            font-size: 20px;
+        }
+        ${mq.lg}{
+            font-size: 20px;
+        }
+    `}
+`;
+
+const ctaStyle = ({
+    color="darkgray",
+    colorDisabled="green",
+    bgColor="green",
+    bgColorDisabled="lightgray"
+}) => css`
+    display: block;
+    width: 100%;
+    background-color: ${bgColor};
+    color: ${color};
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    outline: initial;
+    border: initial;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 1rem;
+    &:disabled{
+        color: ${colorDisabled};
+        background-color: ${bgColorDisabled};
+        cursor: not-allowed;
+    }
+`;
+
+const Submit = styled.input`
+    ${ctaStyle}
+    /* margin: 0 auto;
+    margin-bottom: 2rem;
+    display: block;
+    padding: 15px 45px; */
+`;
+
+const Button = styled.button`
+    ${ctaStyle}
+    /* margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 15px 45px; */
+`;
+
+const ButtonBox = styled.div`
+    text-align: center;
+    width: 100%;
+`;
+
+
+const ErrorMessages = styled.div``;
+
+const ErrorMessage = styled.p`
+    color: red;
+`;
+
+const MessageBox = styled.div`
+     
+    border-radius: 2rem;
+    background-color: white;
+    padding: 2rem;
+    margin: 0;
+    ${mq.sm}{
+        padding: 4rem;
+    }
+    ${mq.lg}{
+        padding: 8rem;
+        border-radius: 4rem;
+    }
+`;
+
+const MessageTitle = styled.h3`
+    ${({color})=>css`
+        color: ${color};
+        text-align: center;
+        width: 100%;
+        margin-bottom: 2rem;
+    `}
+`;
+
+const MessageText = styled.p``;
+
+const Results = styled.div``;
+
+const Result = styled.div`
+    margin-bottom: 2rem;
+`;
+
+const ResultTitle = styled.h4`
+    color: #484848;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: left;
+    margin: 0;
+`;
+    
+const ResultValue = styled.h3`
+    text-align: left;
+    margin: 0;
+    font-weight: 900;
+`;
+
+
+const Table = styled.table`
+    margin: 0;
+    border: initial;
+    overflow: auto;
+    width: 100%;
+`;
+
+const TBody = styled.tbody`
+`;
+
+const THead = styled.thead`
+    font-weight: bold;
+`;
+
+const Tr = styled.tr`
+    ${({bgColor="#26974711"})=>css`
+        &:nth-of-type(odd){
+            background-color: ${bgColor};
+        }
+    `}
+`;
+
+const Th = styled.th`
+    font-weight: bold;
+    vertical-align: top;
+    padding: 10px;
+    border: initial;
+    word-break: initial;
+`;
+
+const Td = styled.td`
+    font-weight: normal;
+    vertical-align: top;
+    padding: 10px;
+    border: initial;
+    word-break: initial;
+`;

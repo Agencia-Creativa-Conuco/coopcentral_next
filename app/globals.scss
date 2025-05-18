@@ -116,6 +116,9 @@
 
 /* NUEVOS GLOBALES */
 /* CSS RESET */
+body {
+  overflow: initial;
+}
 html,
 body {
   border: none;

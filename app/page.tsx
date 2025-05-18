@@ -1,5 +1,4 @@
 // Craft Imports
-import { Section, Container, Prose } from "@/components/craft";
 import HomeCover from "@/components/frontpage/homeCover";
 import HomeInfo from "@/components/frontpage/homeInfo";
 import {
@@ -9,6 +8,9 @@ import {
   getPageBySlug,
 } from "@/lib/wordpress";
 import styles from "./page.module.scss";
+import HomeProducts from "@/components/frontpage/homeProducts";
+import HomeNewsletter from "@/components/frontpage/homeNewsletter";
+import HomeContact from "@/components/frontpage/homeContact";
 
 // This page is using the craft.tsx component and design system
 export default async function Home() {
@@ -34,6 +36,9 @@ export default async function Home() {
         {...{ slides, page, featured_media, title, content, meta_box }}
       />
       <HomeInfo data={meta_box} />
+      <HomeProducts page={page} />
+      <HomeNewsletter page={page} />
+      <HomeContact page={page} />
     </main>
   );
 }

@@ -1,0 +1,96 @@
+@use "./mixins.scss" as *;
+
+.section {
+  @include gap();
+  position: relative;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
+.container {
+  @include container();
+}
+
+.title {
+  color: white;
+  text-align: center;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5rem;
+}
+
+.product {
+  background-color: white;
+  border-radius: 5rem;
+  @include mq(md) {
+    border-radius: 20rem;
+  }
+
+  &:nth-child(odd) {
+    .link {
+      .media {
+        margin-left: auto;
+        @include mq(md) {
+          order: 2;
+        }
+      }
+    }
+  }
+  .link {
+    text-decoration: none;
+    color: black;
+    @include mq(md) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+  }
+}
+
+.content {
+  padding: 2rem;
+  @include mq(md) {
+    width: 80%;
+    margin: 0 10%;
+    padding: 4rem 0;
+  }
+}
+
+.name {
+  @include h4m();
+  margin-top: initial;
+  text-transform: uppercase;
+}
+
+.copy {
+  white-space: break-spaces;
+  margin-bottom: 0;
+}
+
+.media {
+  width: 10rem;
+  margin-top: -3rem;
+  @include mq(md) {
+    width: 15rem;
+    transform-origin: top center;
+    transform: scale(1.1);
+    margin-top: initial;
+  }
+}
+
+.mediaWrapper {
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 20%;
+  background-color: white;
+  color: white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+
+  img {
+    aspect-ratio: 1/1;
+  }
+}
