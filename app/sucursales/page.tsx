@@ -50,6 +50,7 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
               alt={title}
               width={1920}
               height={1080}
+              priority={isPrincipal}
             />
           </div>
           <svg

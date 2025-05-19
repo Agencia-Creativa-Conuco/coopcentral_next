@@ -65,6 +65,7 @@ export default function HomeCover({
                         width={1920}
                         height={1536}
                         alt={title.rendered}
+                        priority
                       />
                     </div>
                   </Link>

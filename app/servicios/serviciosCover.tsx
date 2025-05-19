@@ -22,6 +22,7 @@ export default async function ServiceCover({ page }: Props) {
               alt={service_cover_title}
               width={1920}
               height={1080}
+              priority
             />
           </div>
           <svg

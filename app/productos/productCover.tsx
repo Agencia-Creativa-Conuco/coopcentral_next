@@ -24,6 +24,7 @@ export default async function ProductsCover({ page }: Props) {
                 alt="Logo productos"
                 width={800}
                 height={800}
+                priority
               />
             </div>
             <svg
