@@ -1,0 +1,133 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  padding-bottom: 20%;
+  padding-top: 6rem;
+  margin-top: 15rem;
+  position: relative;
+  z-index: 2;
+
+  background-color: #e7f6e5;
+
+  /* GREEN VERYLIGHT SECTION DECO */
+  &:before {
+    content: "";
+    background-color: #54bf48;
+    padding-bottom: 200%;
+    width: 200%;
+    border-radius: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    opacity: 0.14;
+    left: 0;
+    top: 20%;
+    z-index: 1;
+  }
+
+  /* GREEN VERYLIGHT SECTION DECO */
+  &:after {
+    content: "";
+    background-color: #54bf48;
+    padding-bottom: 100%;
+    width: 100%;
+    border-radius: 50%;
+    transform: translate(50%, 50%);
+    position: absolute;
+    opacity: 0.14;
+    right: 0;
+    top: 20%;
+    z-index: 1;
+  }
+}
+
+.container {
+  @include container();
+  @include gap();
+}
+
+.card {
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.title {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: initial;
+  margin-top: -10rem;
+  margin-bottom: 4rem;
+  @include mq(lg) {
+    margin-top: -12rem;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: var(--text-color-main);
+}
+
+.content {
+  text-align: justify;
+  padding: 2rem 1rem;
+
+  p {
+    display: none;
+  }
+
+  @include mq(md) {
+    p {
+      display: block;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.media {
+  border-radius: 2rem;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+}
+
+.greenDeco {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 3%;
+  background-color: var(--primary-base);
+  box-sizing: content-box;
+  border-radius: 50%;
+  width: 550%;
+  padding-bottom: 550%;
+  transform: translate(-45%, 0);
+  z-index: 2;
+  /*DARK GREEN */
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: var(--primary-dark);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    left: 0;
+    top: 1%;
+    transform: translate(-4%, 0);
+    z-index: 2;
+  }
+}
