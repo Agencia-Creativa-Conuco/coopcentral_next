@@ -38,6 +38,7 @@ export default async function Page({
             alt={title}
             width={1920}
             height={1080}
+            priority
           />
           <div
             className={styles.bgSection}
