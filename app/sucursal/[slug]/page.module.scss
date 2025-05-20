@@ -1,0 +1,183 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  position: relative;
+}
+
+.container {
+  @include container();
+  @include gap();
+}
+
+.bgSection {
+  position: relative;
+  z-index: 2;
+  &:before {
+    content: "";
+    background-color: var(--primary-light);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300%;
+    padding-bottom: 300%;
+    border-radius: 50%;
+    transform: translate(-43%, -2%);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
+
+  &:after {
+    content: "";
+    background-color: var(--primary-dark);
+    top: 0;
+    right: 0;
+    width: 150%;
+    padding-bottom: 150%;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(55%, -10%);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    display: block;
+    z-index: -1;
+  }
+}
+
+.media {
+  position: relative;
+  z-index: -2;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1.3;
+    @include mq(sm) {
+      aspect-ratio: 1/1;
+    }
+
+    @include mq(md) {
+      aspect-ratio: 1/0.8;
+    }
+
+    @include mq(lg) {
+      aspect-ratio: 16/9;
+    }
+    @include mq(xl) {
+      aspect-ratio: 1/0.4;
+    }
+  }
+}
+
+.wrapper {
+  background-color: white;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  margin-top: -10rem;
+  border-radius: 3rem;
+  padding: 0 1.5rem;
+  max-width: 75rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  @include mq(md) {
+    padding: 0 8rem;
+    border-radius: 30rem;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+  }
+}
+
+.mapWrapper {
+  position: relative;
+  @include mq(md) {
+    margin-top: -0rem;
+    &:after {
+      content: "";
+      background-color: var(--secondary-base);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 8rem;
+      height: 1.5rem;
+      border-radius: 2.5rem;
+      transform: translate(-50%, 250%);
+      z-index: 1;
+    }
+  }
+}
+
+.map {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 20rem;
+  height: 20rem;
+  background-color: #fafafa;
+  position: relative;
+  margin: 0 auto;
+  margin-top: -10rem;
+  @include mq(md) {
+    margin-top: -5rem;
+  }
+}
+
+.iframe {
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: initial;
+}
+
+.content {
+  color: var(--primary-base);
+  padding: 4rem 0;
+  position: relative;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.title {
+  @include h3m();
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: initial;
+}
+
+.info {
+  position: relative;
+  margin-bottom: 2rem;
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+}
+
+.icon {
+  width: 3rem;
+  aspect-ratio: 1/1;
+}
+
+.text {
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.telLink {
+  color: inherit;
+  text-decoration: none;
+  &:before {
+    content: " | ";
+  }
+  &:first-of-type {
+    &:before {
+      content: none;
+    }
+  }
+}

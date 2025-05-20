@@ -323,6 +323,12 @@ export async function getProductBySlug(slug: string): Promise<Post> {
   return response[0];
 }
 
+export async function getSucursalBySlug(slug: string): Promise<Post> {
+  const url = getUrl("/wp-json/wp/v2/sucursal", { slug });
+  const response = await wordpressFetch<Post[]>(url);
+  return response[0];
+}
+
 export async function getSettings() {
   const url = getUrl("/wp-json/site/v1/settings/");
   return wordpressFetch<Post[]>(url);
