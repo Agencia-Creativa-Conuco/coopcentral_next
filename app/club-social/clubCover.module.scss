@@ -1,0 +1,72 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  position: relative;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.content {
+  @include container();
+  @include gap();
+  @include mq(lg) {
+    max-width: 57rem;
+    margin: 0 auto;
+  }
+}
+
+.title {
+  margin-bottom: 2rem;
+  font-weight: initial;
+  text-transform: uppercase;
+}
+
+.mediaWrapper {
+  position: relative;
+  max-width: 90%;
+  @include mq(lg) {
+    max-width: initial;
+  }
+
+  /* SMALL GREEN OVAL DECO */
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: var(--primary-light);
+    padding-bottom: 15%;
+    width: 20%;
+    border-radius: 50%;
+    left: 0;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+}
+
+.media {
+  clip-path: ellipse(70% 50% at 30% 50%);
+  transform: rotate(15deg);
+  img {
+    transform: rotate(-15deg);
+  }
+}
+
+.longLine {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  transform: translate(-50%, -52%) rotate(5deg);
+}
+
+.copy {
+  white-space: break-spaces;
+}
