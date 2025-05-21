@@ -1,0 +1,135 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  padding-bottom: 20%;
+}
+
+.mediaLogo {
+  position: relative;
+  @include mq(lg) {
+    max-width: 68%;
+    margin-left: auto;
+  }
+
+  /* GREEN OVAL DECORATION */
+
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: var(--primary-dark);
+    width: 50%;
+    padding-bottom: 50%;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, 25%);
+  }
+
+  img {
+    clip-path: ellipse(70% 100% at 70% 0%);
+  }
+}
+
+.container {
+  @include gap();
+}
+
+.wrapper {
+  @include container();
+  background-color: white;
+  box-shadow: 0 15px 40px silver;
+  padding: 5%;
+  z-index: 10;
+  border-radius: 50px 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include mq(lg) {
+    border-radius: 10rem;
+    margin-top: -25%;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.decoLines {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  transform: translate(-20%, 50%);
+}
+
+.content {
+  max-width: 50rem;
+  padding: 2% 5% 5% 5%;
+  color: var(--primary-base);
+}
+
+.title {
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.subtitle {
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.info {
+  position: relative;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.icon {
+  width: 3rem;
+}
+
+.text {
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+
+  &.notIon {
+    display: inline;
+  }
+}
+
+.telLink {
+  color: inherit;
+  text-decoration: none;
+  &:before {
+    content: " | ";
+  }
+  &:first-of-type {
+    &:before {
+      content: none;
+    }
+  }
+}
+
+.formWrapper {
+  position: relative;
+
+  @include mq(lg) {
+    /*SILVER LINE DECO */
+    &::before {
+      content: "";
+      padding-bottom: 25rem;
+      width: 0.2rem;
+      position: absolute;
+      background-color: #d9d9d9;
+      left: 0;
+      transform: translate(-8rem);
+    }
+  }
+}
