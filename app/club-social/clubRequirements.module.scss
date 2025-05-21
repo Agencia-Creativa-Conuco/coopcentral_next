@@ -1,0 +1,108 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  padding-bottom: 20%;
+  padding-top: 20%;
+  background-color: #298a43;
+  position: relative;
+  @include mq(md) {
+    padding-bottom: 10%;
+  }
+
+  &:before {
+    content: "";
+    background-color: #3fb14f;
+    width: 100%;
+    padding-bottom: 100%;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0;
+    left: 0;
+    transform: translateY(75%) scaleX(2);
+  }
+}
+
+.container {
+  @include mq(sm) {
+    @include gap();
+  }
+}
+
+.wrapper {
+  @include container();
+  background-color: white;
+  position: relative;
+  padding: 5%;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: flex-start;
+  @include mq(sm) {
+    border-radius: 4rem;
+  }
+  @include mq(lg) {
+    border-radius: 50rem;
+    grid-template-columns: 1fr 3fr;
+    gap: 5rem;
+    padding: 2.5%;
+  }
+  @include mq(xl) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.divIcon {
+  background-color: var(--secondary-base);
+  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 1/1;
+  position: relative;
+  margin-bottom: 4rem;
+  max-width: 20rem;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  margin-top: -10rem;
+  @include mq(lg) {
+    margin-top: initial;
+    margin-bottom: initial;
+    transform: translate(0, -50%);
+    max-width: 25rem;
+  }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+  }
+}
+
+.content {
+  @include gap();
+}
+.title {
+  color: var(--text-color-main);
+  margin-bottom: 2rem;
+  margin-top: 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include mq(lg) {
+    text-align: left;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 2rem;
+  margin: 0;
+  @include mq(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.item {
+  margin: 0;
+  margin-top: 0.5rem;
+}

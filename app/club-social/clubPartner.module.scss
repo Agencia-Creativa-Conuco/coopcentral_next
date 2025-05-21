@@ -1,0 +1,60 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  background-color: #3fb14f;
+  padding-bottom: 10%;
+}
+
+.container {
+  @include space();
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.wrapper {
+  @include gap();
+}
+
+.card {
+  @include card();
+}
+
+.content {
+  max-width: 80rem;
+  margin: 0 auto;
+  @include gap();
+  padding: 10%;
+
+  @include mq(lg) {
+    padding: 10%;
+  }
+}
+
+.title {
+  @include h3m();
+  color: inherit;
+  margin-bottom: 2.5rem;
+  margin-top: 3rem;
+  text-transform: uppercase;
+}
+
+.list {
+  /* list-style: none; */
+  margin: 0;
+  color: inherit;
+}
+
+.item {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.media {
+  max-width: 8rem;
+  margin-bottom: 4rem;
+  color: inherit;
+}
