@@ -1,0 +1,13 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  padding-bottom: 10rem;
+  @include space();
+}
+
+.media {
+  img {
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+}

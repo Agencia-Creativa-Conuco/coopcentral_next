@@ -1,0 +1,100 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  background-color: #60bc56;
+}
+
+.container {
+  @include container();
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.divTitle {
+  position: relative;
+  display: inline-block;
+  padding: 2rem 0;
+  padding-right: 6rem;
+  margin-top: -3rem;
+  margin-bottom: 4rem;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50rem;
+    height: 100%;
+    width: 300%;
+    background-color: #3fb14f;
+    z-index: 1;
+  }
+}
+
+.title {
+  color: white;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.content {
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.item {
+  margin: 0;
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mediaLogo {
+  position: relative;
+  max-width: 80%;
+  margin-left: auto;
+  transform: translate(0, 25%);
+  margin-top: -5rem;
+
+  @include mq(md) {
+    margin-top: -10rem;
+  }
+
+  @include mq(lg) {
+    transform: initial;
+    max-width: initial;
+    margin-left: initial;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    background-color: #3fb14f;
+    bottom: 0;
+    left: -20%;
+    padding-bottom: 55%;
+    width: 400%;
+    border-radius: 50rem;
+    z-index: 1;
+  }
+  img {
+    position: relative;
+    z-index: 2;
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+}
