@@ -1,0 +1,97 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  padding-top: 5%;
+  padding-bottom: 20%;
+  background-color: #369a44;
+  position: relative;
+
+  /* GREENBASE SECTION DECO */
+
+  &::before {
+    content: "";
+    padding-top: 20rem;
+    padding-bottom: 50%;
+    width: 100%;
+    background-color: #3fb14f;
+    position: absolute;
+    transform: translateY(30%) scaleX(1.4) rotate(-5deg);
+    bottom: 0;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  @include mq(md) {
+    &::before {
+      padding-bottom: 80rem;
+      transform: translateY(70%) scaleX(1.6) rotate(-15deg);
+    }
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2em;
+  color: white;
+  z-index: 10;
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.card {
+  max-width: 32rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.content {
+  padding: 0.5rem;
+  color: white;
+
+  ul {
+    margin: 0;
+    margin-left: 1rem;
+  }
+
+  li {
+    list-style: none;
+    margin: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+.cardTitle {
+  margin: 1rem 0;
+  color: white;
+  text-transform: uppercase;
+}
+
+.members {
+}
+
+.member {
+}
+
+.name {
+  color: inherit;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.jobTitle {
+}
