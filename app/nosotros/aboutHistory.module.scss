@@ -1,0 +1,100 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  background-color: var(--primary-light);
+  margin-top: 20rem !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 20%;
+}
+
+.container {
+  @include container();
+  @include gap();
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+  }
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 4rem;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  @include mq(lg) {
+    text-align: left;
+  }
+}
+
+.contentWrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+  @include mq(lg) {
+    grid-column: 1 / span 2;
+  }
+}
+
+.content {
+  color: white;
+  height: 25rem;
+  overflow-y: hidden;
+  &:global(.active) {
+    height: auto;
+  }
+}
+
+.contentToggle {
+  margin-top: 4rem;
+  color: white;
+}
+
+.toggle {
+  cursor: pointer;
+  display: inline;
+  @include mq(lg) {
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.contentMedia {
+  position: relative;
+  width: 80%;
+  max-width: 30rem;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  margin-top: -15rem;
+  @include mq(lg) {
+    margin-top: -25%;
+    max-width: initial;
+    width: initial;
+  }
+
+  img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.longLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  transform: translate(-50%, 0) rotate(-6deg);
+}
+
+.shortLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 17%;
+  transform: translate(-30%, 0) rotate(-10deg);
+}
