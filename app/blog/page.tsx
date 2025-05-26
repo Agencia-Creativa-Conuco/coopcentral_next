@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getAllPosts, getFeaturedMediaById } from "@/lib/wordpress";
 import { ClockIcon } from "@/components/ui/icons";
 import Pagination from "@/components/pagination";
+import { getURL } from "@/lib/utils";
 
 export default async function Page() {
   const posts = await Promise.all(
@@ -36,7 +37,7 @@ export default async function Page() {
 
             return (
               <div className={styles.card} key={index}>
-                <Link className={styles.link} href={link}>
+                <Link className={styles.link} href={getURL(link)}>
                   <div className={styles.cardImage}>
                     <div className={styles.image}>
                       <Image
