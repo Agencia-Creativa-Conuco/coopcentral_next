@@ -1,0 +1,93 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  @include space();
+  @include gap();
+  padding-bottom: 20%;
+}
+
+.container {
+  @include container();
+}
+
+.header {
+  // margin-bottom: 40px;
+}
+
+.media {
+  position: relative;
+  img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
+.leftLine {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+.rightLine {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20%;
+  transform: translate(30%) rotate(198deg);
+}
+
+.image {
+}
+
+.title {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: initial;
+}
+
+.meta {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.metaIcon {
+  vertical-align: middle;
+  display: inline;
+  margin-right: 0.5rem;
+  svg {
+    display: inline-block;
+  }
+}
+
+.metaText {
+  vertical-align: middle;
+  display: inline;
+}
+
+.link {
+  padding: 15px 0;
+}
+
+.author {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.fecha {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+/**
+ * This component is the parent of the `content.rendered` HTML. We can use nested
+ * selectors to style that HTML.
+ */
+.content {
+  padding: 15px;
+  max-width: 750px;
+  margin: 0 auto;
+}

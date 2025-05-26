@@ -338,3 +338,48 @@ export async function getMenu(name: string) {
   const url = getUrl(`/wp-json/menus/v1/menus/${name}`);
   return wordpressFetch<Post[]>(url);
 }
+
+export async function getSocialBySlug(slug: string): Promise<Post> {
+  const url = getUrl("/wp-json/wp/v2/social", { slug });
+  const response = await wordpressFetch<Post[]>(url);
+  return response[0];
+}
+
+export async function getAllSocial(filterParams?: {
+  author?: string;
+  tag?: string;
+  category?: string;
+  search?: string;
+}): Promise<Post[]> {
+  const query: Record<string, any> = {
+    _embed: true,
+    per_page: 100,
+  };
+
+  if (filterParams?.search) {
+    query.search = filterParams.search;
+
+    if (filterParams?.author) {
+      query.author = filterParams.author;
+    }
+    if (filterParams?.tag) {
+      query.tags = filterParams.tag;
+    }
+    if (filterParams?.category) {
+      query.categories = filterParams.category;
+    }
+  } else {
+    if (filterParams?.author) {
+      query.author = filterParams.author;
+    }
+    if (filterParams?.tag) {
+      query.tags = filterParams.tag;
+    }
+    if (filterParams?.category) {
+      query.categories = filterParams.category;
+    }
+  }
+
+  const url = getUrl("/wp-json/wp/v2/social", query);
+  return wordpressFetch<Post[]>(url);
+}

@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts } from "@/lib/wordpress";
+import { getSocialBySlug, getAllSocial } from "@/lib/wordpress";
 
 import { siteConfig } from "@/site.config";
 
@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import Post from "@/components/post";
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await getAllSocial();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const post = await getSocialBySlug(slug);
 
   if (!post) {
     return {};
@@ -63,7 +63,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const post = await getSocialBySlug(slug);
 
   return (
     <main>
