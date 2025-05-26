@@ -1,0 +1,155 @@
+@use "@/styles/mixins.scss" as *;
+
+.section {
+  position: relative;
+  padding-bottom: 20%;
+  margin-top: 10rem;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 200%;
+    padding-bottom: 200%;
+    border-radius: 50%;
+    background-color: var(--primary-base);
+    opacity: 0.1;
+    z-index: -1;
+  }
+}
+
+.container {
+  @include container();
+  @include gap();
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include mq(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 2rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+  @include mq(md) {
+    border-radius: 5rem;
+  }
+  &:first-of-type {
+    @include mq(md) {
+      grid-column: 1 / span 2;
+      max-width: initial;
+      .link {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @include mq(lg) {
+      grid-column: 1 / span 3;
+    }
+  }
+  &:nth-of-type(even) {
+    .cardImage {
+      order: 2;
+    }
+    .cardBody {
+      order: 1;
+    }
+  }
+}
+
+.cardBody {
+  padding: 2rem;
+  @include mq(sm) {
+    padding: 3rem 4rem;
+  }
+
+  .isPrincipal {
+    @include mq(lg) {
+      max-width: 57rem;
+      margin: 0 auto;
+    }
+  }
+}
+
+.cardImage {
+  .isPrincipal {
+    position: relative;
+    margin-bottom: 4rem;
+
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 20%;
+      padding-bottom: 2%;
+      border-radius: 10rem;
+      background-color: var(--secondary-base);
+      z-index: -1;
+      transform: translate(0, 200%);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      width: 5%;
+      padding-bottom: 2%;
+      border-radius: 10rem;
+      background-color: var(--secondary-base);
+      z-index: -1;
+      transform: translate(0, 200%);
+    }
+  }
+}
+
+.image {
+  img {
+    aspect-ratio: 16/12;
+    object-fit: cover;
+  }
+}
+
+.title {
+  margin-top: 0;
+  @include h4m();
+  max-height: 9rem;
+  overflow: hidden;
+}
+
+.excerpt {
+  max-height: 15rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.meta {
+}
+
+.metaIcon {
+  vertical-align: top;
+  display: inline;
+  svg {
+    display: inline-block;
+  }
+}
+
+.metaText {
+  vertical-align: top;
+  display: inline;
+}
