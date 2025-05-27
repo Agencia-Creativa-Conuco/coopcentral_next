@@ -1,4 +1,9 @@
-import { getPostBySlug, getAllPosts } from "@/lib/wordpress";
+import {
+  getPostBySlug,
+  getAllPosts,
+  getPageBySlug,
+  getAllPages,
+} from "@/lib/wordpress";
 
 import { siteConfig } from "@/site.config";
 
@@ -7,8 +12,11 @@ import Post from "@/components/post";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
+  const pages = await getAllPages();
 
-  return posts.map((post) => ({
+  const data = [...posts, ...pages];
+
+  return data.map((post) => ({
     slug: post.slug,
   }));
 }
@@ -20,37 +28,40 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const page = await getPageBySlug(slug);
 
-  if (!post) {
+  const data = post || page;
+
+  if (!data) {
     return {};
   }
 
   const ogUrl = new URL(`${siteConfig.site_domain}/api/og`);
-  ogUrl.searchParams.append("title", post.title.rendered);
+  ogUrl.searchParams.append("title", data.title.rendered);
   // Strip HTML tags for description
-  const description = post.excerpt.rendered.replace(/<[^>]*>/g, "").trim();
+  const description = data.excerpt.rendered.replace(/<[^>]*>/g, "").trim();
   ogUrl.searchParams.append("description", description);
 
   return {
-    title: post.title.rendered,
+    title: data.title.rendered,
     description: description,
     openGraph: {
-      title: post.title.rendered,
+      title: data.title.rendered,
       description: description,
       type: "article",
-      url: `${siteConfig.site_domain}/posts/${post.slug}`,
+      url: `${siteConfig.site_domain}/posts/${data.slug}`,
       images: [
         {
           url: ogUrl.toString(),
           width: 1200,
           height: 630,
-          alt: post.title.rendered,
+          alt: data.title.rendered,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title.rendered,
+      title: data.title.rendered,
       description: description,
       images: [ogUrl.toString()],
     },
@@ -64,10 +75,13 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const page = await getPageBySlug(slug);
+
+  const data = post || page;
 
   return (
     <main>
-      <Post post={post} />
+      <Post post={data} />
     </main>
   );
 }

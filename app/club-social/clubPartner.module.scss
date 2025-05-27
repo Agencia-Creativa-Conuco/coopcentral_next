@@ -6,10 +6,10 @@
 }
 
 .container {
-  @include space();
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
+  @include space();
   @include mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
@@ -26,8 +26,8 @@
 .content {
   max-width: 80rem;
   margin: 0 auto;
-  @include gap();
   padding: 10%;
+  @include gap();
 
   @include mq(lg) {
     padding: 10%;
@@ -35,11 +35,11 @@
 }
 
 .title {
-  @include h3m();
   color: inherit;
   margin-bottom: 2.5rem;
   margin-top: 3rem;
   text-transform: uppercase;
+  @include h3m();
 }
 
 .list {

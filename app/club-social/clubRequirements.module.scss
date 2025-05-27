@@ -29,7 +29,6 @@
 }
 
 .wrapper {
-  @include container();
   background-color: white;
   position: relative;
   padding: 5%;
@@ -37,6 +36,7 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: flex-start;
+  @include container();
   @include mq(sm) {
     border-radius: 4rem;
   }

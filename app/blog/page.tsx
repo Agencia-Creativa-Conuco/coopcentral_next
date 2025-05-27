@@ -22,7 +22,6 @@ export default async function Page() {
     })
   );
   const headers = (await fetch(`${host}/wp-json/wp/v2/posts`)).headers;
-  //   console.log(headers.get("link"));
 
   return posts.length ? (
     <main>

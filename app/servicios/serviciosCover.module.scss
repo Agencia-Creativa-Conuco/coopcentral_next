@@ -53,11 +53,10 @@
 }
 
 .content {
-  @include gap();
-
   max-width: 57rem;
   margin: 0 auto;
   order: 2;
+  @include gap();
   @include mq(lg) {
     order: 1;
   }

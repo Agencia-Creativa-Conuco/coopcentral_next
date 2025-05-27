@@ -1,13 +1,13 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  @include gap();
   margin-top: -5rem;
   padding-top: 35%;
   padding-bottom: 5%;
   position: relative;
   overflow: hidden;
   box-sizing: content-box;
+  @include gap();
 
   /* FIRST GREEN DARK SECTION*/
   &:before {

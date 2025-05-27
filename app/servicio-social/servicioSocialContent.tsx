@@ -19,7 +19,6 @@ export default async function ServicioSocialContent({ page }: Props) {
         <div className={styles.list}>
           {socials.map((social: any, index: number) => {
             const { title, excerpt, featured_media, link } = social;
-            console.log(featured_media);
 
             return (
               <div className={styles.card} key={index}>

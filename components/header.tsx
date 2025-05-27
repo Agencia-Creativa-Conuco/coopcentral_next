@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./header.module.scss";
-import Navigation from "./navigation/navigation";
+import Navigation from "@/components/navigation/navigation";
 import { CustomContext } from "@/components/theme/custom-provider";
 import { CloseIcon, MenuIcon } from "./ui/icons";
 

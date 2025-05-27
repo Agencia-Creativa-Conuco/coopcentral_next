@@ -19,11 +19,11 @@
 }
 
 .container {
-  @include container();
-  @include gap();
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
+  @include gap();
+  @include container();
   @include mq(md) {
     grid-template-columns: 1fr 1fr;
   }
@@ -127,9 +127,9 @@
 
 .title {
   margin-top: 0;
-  @include h4m();
   max-height: 9rem;
   overflow: hidden;
+  @include h4m();
 }
 
 .excerpt {

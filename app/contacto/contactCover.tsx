@@ -114,7 +114,7 @@ export default async function contactCover({ page }: Props) {
             ) : null;
           })}
           <div className={styles.formWrapper}>
-            <Form formId={form_id} cardStyle={false} />
+            <Form formId={form_id} />
           </div>
 
           <svg

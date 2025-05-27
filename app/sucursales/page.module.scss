@@ -10,11 +10,11 @@
 }
 
 .container {
-  @include container();
   display: grid;
   grid-template-columns: 1fr;
   gap: 5rem;
   margin-top: 5rem;
+  @include container();
 
   @include mq(md) {
     grid-template-columns: 1fr 1fr;
@@ -121,11 +121,11 @@
 }
 
 .title {
-  @include h3m();
   color: inherit;
   margin-top: 0;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  @include h3m();
 }
 
 .info {

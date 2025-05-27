@@ -5,9 +5,9 @@
 }
 
 .container {
-  @include container();
   display: grid;
   grid-template-columns: 1fr;
+  @include container();
   @include mq(lg) {
     grid-template-columns: 1fr 1fr;
   }

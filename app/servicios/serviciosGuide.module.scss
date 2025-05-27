@@ -1,10 +1,10 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  @include gap();
   padding-bottom: 20%;
   background-color: white;
   position: relative;
+  @include gap();
 
   /*WHITE SECTION DECO*/
   &:before {
@@ -49,10 +49,10 @@
 }
 
 .form {
-  @include card();
   margin-top: 4rem;
   max-width: 65rem;
   margin: 0 auto;
+  @include card();
 }
 
 .downloadCard {

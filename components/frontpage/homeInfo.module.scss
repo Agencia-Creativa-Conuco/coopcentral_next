@@ -1,14 +1,14 @@
-@use "./mixins.scss" as mix;
+@use "./mixins.scss" as *;
 
 .section {
-  @include mix.gap();
   padding-top: 30%;
   position: relative;
   background-color: white;
-  @include mix.mq(sm) {
+  @include gap();
+  @include mq(sm) {
     padding-top: 15%;
   }
-  @include mix.mq(lg) {
+  @include mq(lg) {
     padding-top: 10rem;
   }
   &:before {
@@ -19,7 +19,7 @@
     bottom: 0;
     width: 100%;
     background-color: var(--primary-base);
-    @include mix.mq(md) {
+    @include mq(md) {
       display: none;
     }
   }
@@ -90,8 +90,6 @@
 }
 
 .wrapper {
-  @include mix.container();
-  @include mix.space();
   background-color: white;
   position: relative;
   border-radius: 5rem;
@@ -100,15 +98,17 @@
   z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
-  @include mix.mq(sm) {
+  @include space();
+  @include container();
+  @include mq(sm) {
     padding: 4rem;
   }
 
-  @include mix.mq(md) {
+  @include mq(md) {
     padding: 6rem;
   }
 
-  @include mix.mq(lg) {
+  @include mq(lg) {
     padding: initial;
     border-radius: 10rem;
     grid-template-columns: 1fr 1fr;
@@ -121,7 +121,7 @@
   margin-top: -20%;
   margin-bottom: 4rem;
   max-width: 70%;
-  @include mix.mq(lg) {
+  @include mq(lg) {
     margin: initial;
     max-width: initial;
   }
@@ -167,7 +167,7 @@
   position: relative;
   z-index: 2;
   padding: 1rem;
-  @include mix.mq(lg) {
+  @include mq(lg) {
     padding: 5rem;
   }
 
@@ -177,12 +177,12 @@
 }
 
 .title {
-  @include mix.h3m();
   text-align: center;
   margin-top: 0%;
   margin-bottom: 3rem;
   font-weight: 400;
-  @include mix.mq(sm) {
+  @include h3m();
+  @include mq(sm) {
     text-align: left;
   }
 }

@@ -54,7 +54,7 @@ const NavItem = ({
         {isLink ? (
           <Link href={getURL(item.url)} target={item?.target || ""}>
             <span
-              className={`${styles.itemLink} ${
+              className={`${styles.itemLink} ${isHeader ? "isHeader" : ""} ${
                 children?.length && !isHeader ? "hasChildren" : ""
               }`}
               aria-current={isCurrentPage ? "page" : undefined}
@@ -68,7 +68,7 @@ const NavItem = ({
           </Link>
         ) : (
           <span
-            className={`${styles.itemLabel} ${
+            className={`${styles.itemLabel} ${isHeader ? "isHeader" : ""} ${
               children?.length && !isHeader ? "hasChildren" : ""
             }`}
             aria-current={isCurrentPage ? "page" : undefined}

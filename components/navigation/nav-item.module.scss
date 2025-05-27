@@ -27,16 +27,19 @@
     & > .labelWrapper {
       background-color: rgba(var(--primary-base), 0.1);
     }
-    @include mq(lg) {
-      &:before {
-        content: "";
-        background-color: var(--secondary-base);
-        position: absolute;
-        bottom: 0;
-        width: 40%;
-        height: 0.2rem;
-        left: 50%;
-        transform: translate(-50%, -200%);
+
+    &:global(.isHeader) {
+      @include mq(lg) {
+        &:before {
+          content: "";
+          background-color: var(--secondary-base);
+          position: absolute;
+          bottom: 0;
+          width: 40%;
+          height: 0.2rem;
+          left: 50%;
+          transform: translate(-50%, -200%);
+        }
       }
     }
   }
@@ -64,13 +67,14 @@
   text-decoration: none;
   color: inherit;
   padding: 1rem 1rem;
-  font-family: var(--poppins), sans-serif;
-  font-weight: inherit;
+  font-weight: initial;
   &:hover {
     text-decoration: underline;
 
-    @include mq(lg) {
-      text-decoration: none;
+    &:global(.isHeader) {
+      @include mq(lg) {
+        text-decoration: none;
+      }
     }
   }
 

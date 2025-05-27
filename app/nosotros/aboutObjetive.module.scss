@@ -5,8 +5,8 @@
 }
 
 .container {
-  @include container();
   @include gap();
+  @include container();
 }
 
 .title {

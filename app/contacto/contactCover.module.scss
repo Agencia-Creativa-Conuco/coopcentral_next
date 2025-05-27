@@ -35,7 +35,6 @@
 }
 
 .wrapper {
-  @include container();
   background-color: white;
   box-shadow: 0 15px 40px silver;
   padding: 5%;
@@ -43,6 +42,7 @@
   border-radius: 50px 50px;
   display: grid;
   grid-template-columns: 1fr;
+  @include container();
 
   @include mq(lg) {
     border-radius: 10rem;

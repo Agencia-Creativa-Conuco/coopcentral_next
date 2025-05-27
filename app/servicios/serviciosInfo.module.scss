@@ -1,12 +1,12 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  @include gap();
   padding-top: 5%;
   padding-bottom: 40%;
   background-color: #298a43;
   overflow: hidden;
   position: relative;
+  @include gap();
   @include mq(md) {
     padding-bottom: 10%;
   }

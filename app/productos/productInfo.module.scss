@@ -34,17 +34,17 @@
 }
 
 .title {
-  @include h2m();
   text-align: center;
   margin-bottom: 4rem;
   text-transform: uppercase;
   font-weight: initial;
+  @include h2m();
 }
 
 .products {
-  @include container();
   display: grid;
   grid-template-columns: 1fr;
+  @include container();
 
   @include mq(md) {
     grid-template-columns: 1fr 1fr;

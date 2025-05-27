@@ -1,0 +1,107 @@
+@use "@/styles/mixins.scss" as *;
+
+.footer {
+  overflow: hidden;
+  padding-top: 10%;
+  padding-bottom: 4rem;
+  margin-top: -10%;
+  position: relative;
+  z-index: 100;
+}
+
+.wrapper {
+  background-color: white;
+  z-index: 100;
+  &:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0.5rem;
+    left: 3%;
+    background-color: white;
+    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+    box-sizing: content-box;
+    border-radius: 50%;
+    width: 550%;
+    padding-bottom: 550%;
+    transform: translate(-45%, 0);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  @include gap();
+  @include container();
+  @include mq(lg) {
+    gap: 10rem;
+    grid-template-columns: 20rem 1fr;
+  }
+}
+
+.logo {
+  display: block;
+  position: relative;
+  width: 15rem;
+  width: 20rem;
+  z-index: 1;
+  img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: space-between;
+  padding-top: 2rem;
+  @include gap();
+  @include container();
+  @include mq(lg) {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.info {
+  order: 2;
+  @include mq(lg) {
+    order: 1;
+  }
+}
+
+.certification {
+  order: 1;
+  @include mq(lg) {
+    order: 2;
+  }
+}
+
+.iconLink {
+  background-color: var(--primary-base);
+  color: white !important;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  &:hover {
+    opacity: 0.5;
+  }
+  svg {
+    aspect-ratio: 1/1;
+  }
+}
+
+.copy {
+  margin-top: 2rem;
+}

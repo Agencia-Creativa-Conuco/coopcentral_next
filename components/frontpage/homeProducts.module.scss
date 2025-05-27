@@ -1,10 +1,10 @@
 @use "./mixins.scss" as *;
 
 .section {
-  @include gap();
   position: relative;
   padding-top: 10rem;
   padding-bottom: 10rem;
+  @include gap();
 }
 
 .container {
@@ -61,9 +61,9 @@
 }
 
 .name {
-  @include h4m();
   margin-top: initial;
   text-transform: uppercase;
+  @include h4m();
 }
 
 .copy {

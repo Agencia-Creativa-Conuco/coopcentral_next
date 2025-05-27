@@ -29,11 +29,11 @@
 }
 
 .container {
-  @include container();
-  @include gap();
-
   display: grid;
   margin-top: -2.5rem;
+  @include gap();
+  @include container();
+
   @include mq(lg) {
     margin-top: -3.5rem;
     grid-template-columns: 15rem 1fr;
@@ -91,11 +91,11 @@
 }
 
 .gadgets {
-  @include gap();
   position: absolute;
   top: 50%;
   right: 0;
   transform: translate(0, -50%);
+  @include gap();
 }
 
 .menuButton {

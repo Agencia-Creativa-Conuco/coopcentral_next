@@ -49,11 +49,10 @@ const Navigation = ({
           </div>
         ) : (
           items.map((el, index) => {
-            const item = el.item;
-            const children = el.children;
+            const children = el.child_items;
             return children ? (
               <div key={index} className={styles.block}>
-                <span className={styles.label}>{item?.attributes?.title}</span>
+                <span className={styles.label}>{el?.title}</span>
 
                 <NavList
                   items={children}

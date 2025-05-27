@@ -30,8 +30,8 @@ export default function HomeCover({
 
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
-  let slider1: any = [];
-  let slider2: any = [];
+  let slider1: any;
+  let slider2: any;
 
   useEffect(() => {
     setNav1(slider1);

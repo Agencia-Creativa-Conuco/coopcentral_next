@@ -64,10 +64,10 @@
 }
 
 .form {
-  @include card();
   background-color: white;
   max-width: 65rem;
   margin: 0 auto;
+  @include card();
 }
 
 .decoRoundLines {

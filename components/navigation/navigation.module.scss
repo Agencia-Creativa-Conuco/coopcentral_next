@@ -29,7 +29,7 @@
   }
 
   &:global(.split) {
-    @include mq(lg) {
+    @include mq(sm) {
       grid-template-columns: 1fr 1fr;
     }
     @include mq(xl) {
@@ -43,8 +43,6 @@
 }
 
 .label {
-  // color: ${props.labelColor};
   font-weight: bold;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
 }

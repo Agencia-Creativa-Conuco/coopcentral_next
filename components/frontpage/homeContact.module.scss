@@ -2,8 +2,8 @@
 
 .section {
   padding-bottom: 20%;
-  @include gap();
   margin-top: 10rem;
+  @include gap();
 }
 
 .container {
