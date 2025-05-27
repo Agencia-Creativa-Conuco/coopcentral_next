@@ -166,21 +166,23 @@ export default async function Page() {
   const sucursals = (await getAllSucursals()).reverse();
 
   return sucursals.length ? (
-    <section className={styles.section}>
-      <div className={styles.mainContainer}>
-        {sucursals.map((sucursal, index) => {
-          return index == 0 ? (
-            <Sucursal key={index} {...{ sucursal, index }} />
-          ) : null;
-        })}
-      </div>
-      <div className={styles.container}>
-        {sucursals.map((sucursal, index) => {
-          return index != 0 ? (
-            <Sucursal key={index} {...{ sucursal, index }} />
-          ) : null;
-        })}
-      </div>
-    </section>
+    <main>
+      <section className={styles.section}>
+        <div className={styles.mainContainer}>
+          {sucursals.map((sucursal, index) => {
+            return index == 0 ? (
+              <Sucursal key={index} {...{ sucursal, index }} />
+            ) : null;
+          })}
+        </div>
+        <div className={styles.container}>
+          {sucursals.map((sucursal, index) => {
+            return index != 0 ? (
+              <Sucursal key={index} {...{ sucursal, index }} />
+            ) : null;
+          })}
+        </div>
+      </section>
+    </main>
   ) : null;
 }

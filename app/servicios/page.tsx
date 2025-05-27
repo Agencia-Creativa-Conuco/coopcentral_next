@@ -9,10 +9,10 @@ export default async function ServicePage() {
   const page = await getPageBySlug("servicios");
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <ServiceCover page={page} />
       <ServiceInfo page={page} />
       <ServiceGuide page={page} />
-    </div>
+    </main>
   );
 }

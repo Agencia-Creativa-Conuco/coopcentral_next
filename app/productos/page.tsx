@@ -9,11 +9,11 @@ import ProductsCalcultor from "./productCalculator";
 export default async function ProductsPage() {
   const page = await getPageBySlug("productos");
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <ProductsCover page={page} />
       <ProductsInfo page={page} />
       <ProductsBeneficts page={page} />
       <ProductsCalcultor page={page} />
-    </div>
+    </main>
   );
 }
