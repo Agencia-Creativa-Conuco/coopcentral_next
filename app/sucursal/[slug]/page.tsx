@@ -77,17 +77,19 @@ export default async function Page({
                   <span className={styles.icon}>
                     <PhoneIcon />
                   </span>
-                  {sucursal_tel.map((tel: string, index: number) => {
-                    return (
-                      <Link
-                        className={styles.telLink}
-                        key={index}
-                        href={`tel:${tel}`}
-                      >
-                        <span className={styles.text}>{tel}</span>
-                      </Link>
-                    );
-                  })}
+                  <span>
+                    {sucursal_tel.map((tel: string, index: number) => {
+                      return (
+                        <Link
+                          className={styles.telLink}
+                          key={index}
+                          href={`tel:${tel}`}
+                        >
+                          <span className={styles.text}>{tel}</span>
+                        </Link>
+                      );
+                    })}
+                  </span>
                 </div>
               ) : null}
               {sucursal_schedule ? (
