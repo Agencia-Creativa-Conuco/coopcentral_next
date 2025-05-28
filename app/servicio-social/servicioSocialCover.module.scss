@@ -17,7 +17,7 @@
 .content {
   @include gap();
   @include mq(md) {
-    max-width: 57rem;
+    max-width: 35.625rem;
     margin: 0 auto;
   }
   @include mq(lg) {
@@ -28,7 +28,7 @@
 .cardImage {
   position: relative;
   margin-left: 10%;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   @include mq(lg) {
     order: 2;
     margin-left: initial;
@@ -49,7 +49,7 @@
 }
 
 .image {
-  border-radius: 50rem 0 0 50rem;
+  border-radius: 31.25rem 0 0 31.25rem;
   overflow: hidden;
 }
 

@@ -18,13 +18,13 @@
   @include gap();
   @include container();
   @include mq(lg) {
-    max-width: 57rem;
+    max-width: 35.625rem;
     margin: 0 auto;
   }
 }
 
 .title {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   font-weight: initial;
   text-transform: uppercase;
 }

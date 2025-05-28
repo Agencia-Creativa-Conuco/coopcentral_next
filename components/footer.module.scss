@@ -3,7 +3,7 @@
 .footer {
   overflow: hidden;
   padding-top: 10%;
-  padding-bottom: 4rem;
+  padding-bottom: 2.5rem;
   margin-top: -10%;
   position: relative;
   z-index: 100;
@@ -16,10 +16,10 @@
     content: "";
     position: absolute;
     display: block;
-    top: 0.5rem;
+    top: 0.312rem;
     left: 3%;
     background-color: white;
-    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 0 0.312rem rgba(0, 0, 0, 0.3));
     box-sizing: content-box;
     border-radius: 50%;
     width: 550%;
@@ -36,20 +36,20 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 1.875rem;
   @include gap();
   @include container();
   @include mq(lg) {
-    gap: 10rem;
-    grid-template-columns: 20rem 1fr;
+    gap: 6.25rem;
+    grid-template-columns: 12.5rem 1fr;
   }
 }
 
 .logo {
   display: block;
   position: relative;
-  width: 15rem;
-  width: 20rem;
+  width: 9.375rem;
+  width: 12.5rem;
   z-index: 1;
   img {
     width: 100%;
@@ -64,7 +64,7 @@
   display: grid;
   grid-template-columns: 1fr;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding-top: 1.25rem;
   @include gap();
   @include container();
   @include mq(lg) {
@@ -91,9 +91,9 @@
   color: white !important;
   border-radius: 50%;
   display: inline-block;
-  margin-top: 2rem;
-  padding: 0.5rem;
-  margin-right: 1rem;
+  margin-top: 1.25rem;
+  padding: 0.312rem;
+  margin-right: 0.625rem;
   &:hover {
     opacity: 0.5;
   }
@@ -103,5 +103,5 @@
 }
 
 .copy {
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 }

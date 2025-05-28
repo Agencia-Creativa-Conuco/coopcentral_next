@@ -4,40 +4,40 @@
 const Calculator = styled.div`
     ${({bgColor="#FAFAFA"})=>css`
         /* background-color: ${bgColor}; */
-        /* box-shadow: 0 0 1rem rgba(0,0,0,0.15); */
-        /* border-radius: 2rem; */
-        padding: 4rem 1.5rem;
+        /* box-shadow: 0 0 0.625rem rgba(0,0,0,0.15); */
+        /* border-radius: 1.25rem; */
+        padding: 2.5rem 0.938rem;
         ${mq.lg}{
-            padding: 4rem;
+            padding: 2.5rem;
         }
     `}
 `;
 
 const Form = styled.form`
-    border-radius: 2rem;
+    border-radius: 1.25rem;
     margin: 0;
 `;
 
 const Switch = styled.label`
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     display: block;
 `;
 
 const SwitchInput = styled.input``;
 
 const SwitchText = styled.span`
-    margin-left: 1rem;
+    margin-left: 0.625rem;
 `;
 
 const Inputs = styled.div`
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     ${mq.md}{
         margin-bottom: initial;
     }
 `;
 
 const InputWrapper = styled.div`
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 `;
 
 const Input = styled.input`
@@ -48,7 +48,7 @@ const Input = styled.input`
         border: none;
         line-height: 1;
         padding: 15px;
-        border-radius: 0.5rem;
+        border-radius: 0.312rem;
         font-weight: bold;
         background-color: ${bgColor};
         color: ${textColor};
@@ -75,14 +75,14 @@ const Message = styled.textarea`
     ${({color="#F5F5F5"})=>css`
         display: block;
         width: 100%;
-        height: 15rem;
+        height: 9.375rem;
         margin: 0 auto;
         margin-bottom: 20px;
         border: none;
         line-height: 1;
         padding: 15px;
-        box-shadow: 0 .5rem .5rem rgba(0,0,0,0.1);
-        border-radius: 0.5rem;
+        box-shadow: 0 .3.125rem .3.125rem rgba(0,0,0,0.1);
+        border-radius: 0.312rem;
         font-weight: bold;
         &:focus{
             outline: initial;
@@ -107,15 +107,15 @@ const ctaStyle = ({
     width: 100%;
     background-color: ${bgColor};
     color: ${color};
-    padding: 1.5rem;
+    padding: 0.938rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     outline: initial;
     border: initial;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
-    border-radius: 1rem;
+    border-radius: 0.625rem;
     &:disabled{
         color: ${colorDisabled};
         background-color: ${bgColorDisabled};
@@ -126,7 +126,7 @@ const ctaStyle = ({
 const Submit = styled.input`
     ${ctaStyle}
     /* margin: 0 auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     display: block;
     padding: 15px 45px; */
 `;
@@ -134,7 +134,7 @@ const Submit = styled.input`
 const Button = styled.button`
     ${ctaStyle}
     /* margin: 0 auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     padding: 15px 45px; */
 `;
 
@@ -152,16 +152,16 @@ const ErrorMessage = styled.p`
 
 const MessageBox = styled.div`
      
-    border-radius: 2rem;
+    border-radius: 1.25rem;
     background-color: white;
-    padding: 2rem;
+    padding: 1.25rem;
     margin: 0;
     ${mq.sm}{
-        padding: 4rem;
+        padding: 2.5rem;
     }
     ${mq.lg}{
-        padding: 8rem;
-        border-radius: 4rem;
+        padding: 5rem;
+        border-radius: 2.5rem;
     }
 `;
 
@@ -170,7 +170,7 @@ const MessageTitle = styled.h3`
         color: ${color};
         text-align: center;
         width: 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 1.25rem;
     `}
 `;
 
@@ -179,7 +179,7 @@ const MessageText = styled.p``;
 const Results = styled.div``;
 
 const Result = styled.div`
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 `;
 
 const ResultTitle = styled.h4`

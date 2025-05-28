@@ -35,27 +35,27 @@
   text-align: center;
   margin-top: 15%;
   color: white;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   @include mq(md) {
-    margin-bottom: 10rem;
+    margin-bottom: 6.25rem;
   }
 }
 
 .service {
-  padding: 3rem;
+  padding: 1.875rem;
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   //   background-color: white;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 1.875rem;
   align-items: center;
 
   @include mq(md) {
-    gap: 10rem;
-    padding: 6rem;
-    margin-bottom: 10rem;
-    border-radius: 20rem;
+    gap: 6.25rem;
+    padding: 3.75rem;
+    margin-bottom: 6.25rem;
+    border-radius: 12.5rem;
   }
 
   &:before {
@@ -66,17 +66,17 @@
     top: 0;
     width: 100%;
     height: 100%;
-    border-radius: 4rem;
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    border-radius: 2.5rem;
+    box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.3);
     @include mq(md) {
-      border-radius: 50rem;
+      border-radius: 31.25rem;
       width: 500%;
       height: 100%;
     }
   }
   @include mq(md) {
     &:nth-of-type(odd) {
-      grid-template-columns: 10rem 1fr;
+      grid-template-columns: 6.25rem 1fr;
 
       &::before {
         left: 0;
@@ -89,7 +89,7 @@
       }
     }
     &:nth-of-type(even) {
-      grid-template-columns: 1fr 10rem;
+      grid-template-columns: 1fr 6.25rem;
       &::before {
         right: 0;
       }
@@ -105,7 +105,7 @@
 
 .image {
   aspect-ratio: 1/1;
-  width: 10rem;
+  width: 6.25rem;
   position: relative;
   z-index: 2;
   display: block;
@@ -118,5 +118,5 @@
 }
 
 .name {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }

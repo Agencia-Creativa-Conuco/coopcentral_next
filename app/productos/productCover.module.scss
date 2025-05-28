@@ -16,19 +16,19 @@
 
 .content {
   @include mq(lg) {
-    max-width: 57rem;
+    max-width: 35.625rem;
     margin: 0 auto;
   }
 }
 
 .title {
   text-transform: uppercase;
-  margin-top: 4rem;
-  margin-bottom: 3rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.875rem;
 }
 
 .copy {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   white-space: break-spaces;
 }
 

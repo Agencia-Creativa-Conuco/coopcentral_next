@@ -2,7 +2,7 @@
 
 .section {
   background-color: var(--primary-light);
-  margin-top: 20rem !important;
+  margin-top: 12.5rem !important;
   margin-bottom: 0 !important;
   padding-bottom: 20%;
 }
@@ -16,13 +16,13 @@
 
   @include mq(lg) {
     grid-template-columns: 1fr 1.5fr;
-    gap: 3rem;
+    gap: 1.875rem;
   }
 }
 
 .title {
   margin-top: 0;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   text-align: center;
   color: white;
   text-transform: uppercase;
@@ -32,7 +32,7 @@
 }
 
 .contentWrapper {
-  max-width: 75rem;
+  max-width: 46.875rem;
   margin: 0 auto;
   @include mq(lg) {
     grid-column: 1 / span 2;
@@ -41,7 +41,7 @@
 
 .content {
   color: white;
-  height: 25rem;
+  height: 15.625rem;
   overflow-y: hidden;
   &:global(.active) {
     height: auto;
@@ -49,7 +49,7 @@
 }
 
 .contentToggle {
-  margin-top: 4rem;
+  margin-top: 2.5rem;
   color: white;
 }
 
@@ -66,10 +66,10 @@
 .contentMedia {
   position: relative;
   width: 80%;
-  max-width: 30rem;
+  max-width: 18.75rem;
   margin: 0 auto;
-  margin-bottom: 4rem;
-  margin-top: -15rem;
+  margin-bottom: 2.5rem;
+  margin-top: -9.375rem;
   @include mq(lg) {
     margin-top: -25%;
     max-width: initial;

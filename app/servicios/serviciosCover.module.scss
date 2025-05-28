@@ -1,11 +1,11 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  padding-top: 5rem;
+  padding-top: 3.125rem;
   padding-bottom: 15%;
   position: relative;
   @include mq(md) {
-    padding-top: 10rem;
+    padding-top: 6.25rem;
     padding-bottom: 5%;
   }
 
@@ -53,7 +53,7 @@
 }
 
 .content {
-  max-width: 57rem;
+  max-width: 35.625rem;
   margin: 0 auto;
   order: 2;
   @include gap();
@@ -63,8 +63,8 @@
 }
 
 .title {
-  margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
 }
 

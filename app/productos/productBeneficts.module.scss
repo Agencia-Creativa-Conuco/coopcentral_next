@@ -1,7 +1,7 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  margin-top: -5rem;
+  margin-top: -3.125rem;
   padding-top: 35%;
   padding-bottom: 5%;
   position: relative;
@@ -41,7 +41,7 @@
   @include mq(lg) {
     padding-top: 20%;
     padding-bottom: 5%;
-    margin-top: -10rem;
+    margin-top: -6.25rem;
   }
 }
 
@@ -50,7 +50,7 @@
 }
 
 .wrapper {
-  padding: 1.5rem;
+  padding: 0.938rem;
   position: relative;
   /* z-index: 5; */
   margin-left: auto;
@@ -65,10 +65,10 @@
     grid-template-columns: 1.5fr 1fr;
   }
   @include mq(sm) {
-    padding: 3rem;
+    padding: 1.875rem;
   }
   @include mq(md) {
-    padding: 4rem;
+    padding: 2.5rem;
   }
 }
 
@@ -114,9 +114,9 @@
     background-color: var(--secondary-base);
     left: 0;
     top: 0;
-    padding: 0.5rem;
+    padding: 0.312rem;
     border-radius: 50%;
-    transform: translate(-1.5rem, 80%);
+    transform: translate(-0.938rem, 80%);
   }
 }
 
@@ -130,12 +130,12 @@
 .mediaLogo {
   position: relative;
   margin: 0 auto;
-  max-width: 20rem;
-  margin-top: -10rem;
-  margin-bottom: 2rem;
+  max-width: 12.5rem;
+  margin-top: -6.25rem;
+  margin-bottom: 1.25rem;
   @include mq(sm) {
-    max-width: 32rem;
-    margin-top: -16rem;
+    max-width: 20rem;
+    margin-top: -10rem;
   }
   @include mq(lg) {
     margin: -30% auto;

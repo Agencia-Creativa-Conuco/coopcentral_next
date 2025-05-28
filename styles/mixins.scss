@@ -42,13 +42,13 @@ $xlq: 1200px;
 }
 
 @mixin space {
-  margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin-top: 6.25rem;
+  margin-bottom: 6.25rem;
 }
 
 @mixin gap {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 @mixin medio {
@@ -66,106 +66,106 @@ $xlq: 1200px;
 @mixin h1m {
   color: var(--primary-base);
   font-weight: 800;
-  font-size: 2.9rem;
+  font-size: 1.812rem;
   line-height: 1.138888889;
 
   @include mq(sm) {
-    font-size: 3.2rem;
+    font-size: 2rem;
   }
   @include mq(md) {
-    font-size: 3.4rem;
+    font-size: 2.125rem;
   }
   @include mq(lg) {
-    font-size: 3.6rem;
+    font-size: 2.25rem;
   }
   @include mq(xl) {
-    font-size: 4rem;
+    font-size: 2.5rem;
   }
 }
 
 @mixin h2m {
   color: var(--primary-base);
-  font-size: 2.1rem;
+  font-size: 1.312rem;
   @include mq(sm) {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
   }
   @include mq(md) {
-    font-size: 2.6rem;
+    font-size: 1.625rem;
   }
   @include mq(lg) {
-    font-size: 2.8rem;
+    font-size: 1.75rem;
   }
   @include mq(xl) {
-    font-size: 3.2rem;
+    font-size: 2rem;
   }
 }
 
 @mixin h3m {
   color: var(--primary-base);
-  font-size: 1.9rem;
+  font-size: 1.188rem;
 
   @include mq(sm) {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
   @include mq(md) {
-    font-size: 2.2rem;
+    font-size: 1.375rem;
   }
   @include mq(lg) {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
   }
   @include mq(xl) {
-    font-size: 2.8rem;
+    font-size: 1.75rem;
   }
 }
 
 @mixin h4m {
   color: var(--primary-base);
-  font-size: 1.8rem;
+  font-size: 1.125rem;
   @include mq(sm) {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
   @include mq(md) {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
   @include mq(lg) {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
   @include mq(xl) {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
   }
 }
 
 @mixin h5m {
   color: var(--primary-base);
-  font-size: 1.7rem;
+  font-size: 1.062rem;
   @include mq(sm) {
-    font-size: 1.7rem;
+    font-size: 1.062rem;
   }
   @include mq(md) {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
   @include mq(lg) {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
   @include mq(xl) {
-    font-size: 2rem;
+    font-size: 1.25rem;
   }
 }
 
 @mixin h6m {
   color: var(--primary-base);
-  font-size: 1.6rem;
+  font-size: 1rem;
   @include mq(sm) {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
   @include mq(md) {
-    font-size: 1.7rem;
+    font-size: 1.062rem;
   }
   @include mq(lg) {
-    font-size: 1.7rem;
+    font-size: 1.062rem;
   }
   @include mq(xl) {
-    font-size: 1.8rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -176,8 +176,8 @@ $xlq: 1200px;
   user-select: none;
   background-color: var(--secondary-base);
   font-weight: bold;
-  padding: 1rem 2.5rem;
-  border-radius: 3rem;
+  padding: 0.625rem 1.562rem;
+  border-radius: 1.875rem;
   display: inline-block;
   color: #565656 !important;
   outline: initial;
@@ -186,7 +186,7 @@ $xlq: 1200px;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
   &:focus {
-    box-shadow: 0 0 0 0.32rem rgba(115, 185, 255, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(115, 185, 255, 0.5);
   }
   &:hover {
     background-color: var(--secondary-base);
@@ -194,11 +194,11 @@ $xlq: 1200px;
 }
 
 @mixin card {
-  padding: 2rem;
-  border-radius: 2rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 0.312rem rgba(0, 0, 0, 0.1);
 
   @include mq(md) {
-    padding: 3rem;
+    padding: 1.875rem;
   }
 }

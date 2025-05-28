@@ -3,7 +3,7 @@
 .section {
   position: relative;
   padding-bottom: 20%;
-  margin-top: 10rem;
+  margin-top: 6.25rem;
   &:before {
     content: "";
     position: absolute;
@@ -21,7 +21,7 @@
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 1.875rem;
   @include gap();
   @include container();
   @include mq(md) {
@@ -41,13 +41,13 @@
 
 .card {
   overflow: hidden;
-  border-radius: 2rem;
-  max-width: 40rem;
+  border-radius: 1.25rem;
+  max-width: 25rem;
   margin: 0 auto;
   background-color: white;
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.15);
   @include mq(md) {
-    border-radius: 5rem;
+    border-radius: 3.125rem;
   }
   &:first-of-type {
     @include mq(md) {
@@ -72,14 +72,14 @@
 }
 
 .cardBody {
-  padding: 2rem;
+  padding: 1.25rem;
   @include mq(sm) {
-    padding: 3rem 4rem;
+    padding: 1.875rem 2.5rem;
   }
 
   .isPrincipal {
     @include mq(lg) {
-      max-width: 57rem;
+      max-width: 35.625rem;
       margin: 0 auto;
     }
   }
@@ -88,7 +88,7 @@
 .cardImage {
   .isPrincipal {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
 
     &:before {
       content: "";
@@ -97,7 +97,7 @@
       left: 0;
       width: 20%;
       padding-bottom: 2%;
-      border-radius: 10rem;
+      border-radius: 6.25rem;
       background-color: var(--secondary-base);
       z-index: -1;
       transform: translate(0, 200%);
@@ -110,7 +110,7 @@
       left: 25%;
       width: 5%;
       padding-bottom: 2%;
-      border-radius: 10rem;
+      border-radius: 6.25rem;
       background-color: var(--secondary-base);
       z-index: -1;
       transform: translate(0, 200%);
@@ -127,15 +127,15 @@
 
 .title {
   margin-top: 0;
-  max-height: 9rem;
+  max-height: 5.625rem;
   overflow: hidden;
   @include h4m();
 }
 
 .excerpt {
-  max-height: 15rem;
+  max-height: 9.375rem;
   overflow: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 0.625rem;
 }
 
 .meta {

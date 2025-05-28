@@ -2,8 +2,8 @@
 
 .section {
   position: relative;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
   @include gap();
 }
 
@@ -14,21 +14,21 @@
 .title {
   color: white;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   text-transform: uppercase;
 }
 
 .products {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 5rem;
+  gap: 3.125rem;
 }
 
 .product {
   background-color: white;
-  border-radius: 5rem;
+  border-radius: 3.125rem;
   @include mq(md) {
-    border-radius: 20rem;
+    border-radius: 12.5rem;
   }
 
   &:nth-child(odd) {
@@ -52,11 +52,11 @@
 }
 
 .content {
-  padding: 2rem;
+  padding: 1.25rem;
   @include mq(md) {
     width: 80%;
     margin: 0 10%;
-    padding: 4rem 0;
+    padding: 2.5rem 0;
   }
 }
 
@@ -72,10 +72,10 @@
 }
 
 .media {
-  width: 10rem;
-  margin-top: -3rem;
+  width: 6.25rem;
+  margin-top: -1.875rem;
   @include mq(md) {
-    width: 15rem;
+    width: 9.375rem;
     transform-origin: top center;
     transform: scale(1.1);
     margin-top: initial;
@@ -88,7 +88,7 @@
   padding: 20%;
   background-color: white;
   color: white;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 0.312rem rgba(0, 0, 0, 0.15);
 
   img {
     aspect-ratio: 1/1;

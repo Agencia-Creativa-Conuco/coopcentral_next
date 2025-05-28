@@ -11,7 +11,7 @@
     content: "";
     position: absolute;
     background-color: #fff;
-    padding-bottom: 120rem;
+    padding-bottom: 75rem;
     width: 300%;
     border-radius: 50%;
     left: 50%;
@@ -45,30 +45,30 @@
 }
 
 .decoSection {
-  padding-bottom: 10rem;
+  padding-bottom: 6.25rem;
 }
 
 .form {
-  margin-top: 4rem;
-  max-width: 65rem;
+  margin-top: 2.5rem;
+  max-width: 40.625rem;
   margin: 0 auto;
   @include card();
 }
 
 .downloadCard {
-  max-width: 57rem;
+  max-width: 35.625rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   @include mq(md) {
-    gap: 2rem;
-    grid-template-columns: 15rem 1fr;
+    gap: 1.25rem;
+    grid-template-columns: 9.375rem 1fr;
   }
 }
 
 .content {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
   @include mq(md) {
@@ -86,7 +86,7 @@
 
 .downloadIcon {
   color: var(--primary-base);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   svg {
     margin: 0 auto;
   }
@@ -107,5 +107,5 @@
 .formTitle {
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }

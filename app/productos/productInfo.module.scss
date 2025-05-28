@@ -35,7 +35,7 @@
 
 .title {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   text-transform: uppercase;
   font-weight: initial;
   @include h2m();
@@ -61,13 +61,13 @@
 }
 
 .card {
-  max-width: 33rem;
+  max-width: 20.625rem;
   margin: 0 auto;
-  margin-bottom: 5rem;
-  padding: 4rem 2rem;
+  margin-bottom: 3.125rem;
+  padding: 2.5rem 1.25rem;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  border-radius: 2.5rem;
+  border-radius: 1.562rem;
   transition: all 0.25s ease-in-out;
 
   @include mq(lg) {
@@ -78,7 +78,7 @@
   }
 
   img {
-    width: 8rem;
+    width: 5rem;
   }
 }
 
@@ -90,5 +90,5 @@
 }
 
 .name {
-  margin: 3rem auto;
+  margin: 1.875rem auto;
 }

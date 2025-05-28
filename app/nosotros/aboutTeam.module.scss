@@ -10,7 +10,7 @@
 
   &::before {
     content: "";
-    padding-top: 20rem;
+    padding-top: 12.5rem;
     padding-bottom: 50%;
     width: 100%;
     background-color: #3fb14f;
@@ -23,7 +23,7 @@
 
   @include mq(md) {
     &::before {
-      padding-bottom: 80rem;
+      padding-bottom: 50rem;
       transform: translateY(70%) scaleX(1.6) rotate(-15deg);
     }
   }
@@ -54,29 +54,29 @@
 }
 
 .card {
-  max-width: 32rem;
+  max-width: 20rem;
   margin: 0 auto;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .content {
-  padding: 0.5rem;
+  padding: 0.312rem;
   color: white;
 
   ul {
     margin: 0;
-    margin-left: 1rem;
+    margin-left: 0.625rem;
   }
 
   li {
     list-style: none;
     margin: 0;
-    margin-top: 0.5rem;
+    margin-top: 0.312rem;
   }
 }
 
 .cardTitle {
-  margin: 1rem 0;
+  margin: 0.625rem 0;
   color: white;
   text-transform: uppercase;
 }

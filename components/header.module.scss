@@ -5,23 +5,23 @@
   text-decoration: none;
   color: white;
   background-color: white;
-  margin: 0 0.5rem;
-  border: 0.2rem solid white;
-  height: 4rem;
-  line-height: 4rem;
+  margin: 0 0.312rem;
+  border: 0.125rem solid white;
+  height: 2.5rem;
+  line-height: 2.5rem;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 0 2rem;
-  border-radius: 10rem;
+  padding: 0 1.25rem;
+  border-radius: 6.25rem;
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 0.875rem;
 }
 
 .header {
   position: relative;
   z-index: 1000;
   transition: background 0.2s ease-in-out;
-  padding: 0.25rem 0;
+  padding: 0.156rem 0;
   position: fixed;
   left: 0;
   top: 0;
@@ -30,14 +30,14 @@
 
 .container {
   display: grid;
-  margin-top: -2.5rem;
+  margin-top: -1.562rem;
   @include gap();
   @include container();
 
   @include mq(lg) {
-    margin-top: -3.5rem;
-    grid-template-columns: 15rem 1fr;
-    gap: 3rem;
+    margin-top: -2.188rem;
+    grid-template-columns: 9.375rem 1fr;
+    gap: 1.875rem;
     align-items: center;
   }
 
@@ -60,10 +60,10 @@
 .logo {
   display: block;
   position: relative;
-  width: 12rem;
+  width: 7.5rem;
   z-index: 1;
   @include mq(lg) {
-    width: 15rem;
+    width: 9.375rem;
   }
 
   img {
@@ -101,9 +101,9 @@
 .menuButton {
   background-color: var(--primary-base);
   border-radius: 50%;
-  padding: 1rem;
-  width: 4rem;
-  height: 4rem;
+  padding: 0.625rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: grid;
   align-items: center;
   justify-content: center;

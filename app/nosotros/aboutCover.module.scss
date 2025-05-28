@@ -16,13 +16,13 @@
 .content {
   @include gap();
   @include mq(md) {
-    max-width: 65rem;
+    max-width: 40.625rem;
     margin: 0 auto;
   }
 }
 
 .title {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
   font-weight: initial;
 }
