@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   let featuredImage = defaultOgImage;
   if (sucursales.length > 0 && sucursales[0].featured_media) {
     const media = await getFeaturedMediaById(sucursales[0].featured_media);
-    featuredImage = media.source_url || defaultOgImage;
+    featuredImage = media?.source_url || defaultOgImage;
   }
 
   const description = `Encuentra todas las sucursales de Coopcentral en República Dominicana. Ubicaciones, horarios, teléfonos y direcciones de nuestras oficinas. ${sucursales.length} sucursales a tu servicio.`;
@@ -91,18 +91,20 @@ export async function generateMetadata(): Promise<Metadata> {
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Servicios Financieros",
-          itemListElement: sucursales.slice(0, 5).map((sucursal, index) => {
-            const { meta_box } = sucursal;
+          itemListElement: sucursales.slice(0, 5).map((sucursal) => {
+            const { meta_box } = sucursal as any;
             return {
               "@type": "LocalBusiness",
-              name: `Coopcentral - ${sucursal.title.rendered}`,
+              name: `Coopcentral - ${sucursal.title?.rendered || "Sucursal"}`,
               address: {
                 "@type": "PostalAddress",
                 streetAddress: meta_box?.sucursal_direction || "",
                 addressCountry: "DO",
               },
               telephone: meta_box?.sucursal_tel?.[0] || "",
-              url: `https://www.coopcentral.do/sucursal/${sucursal?.slug}`,
+              url: `https://www.coopcentral.do/sucursal/${
+                sucursal?.slug || ""
+              }`,
             };
           }),
         },
@@ -113,25 +115,27 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
-  const { title, meta_box } = sucursal;
+  const { title, meta_box } = sucursal as any;
 
   const featured_media = await getFeaturedMediaById(sucursal.featured_media);
 
   const {
-    sucursal_direction,
-    sucursal_tel,
-    sucursal_mail,
-    sucursal_schedule,
-    sucursal_url_map,
-  } = meta_box;
+    sucursal_direction = "",
+    sucursal_tel = [],
+    sucursal_mail = [],
+    sucursal_schedule = "",
+    sucursal_url_map = "",
+  } = meta_box || {};
 
-  const isPrincipal = index == 0;
+  const isPrincipal = index === 0;
 
   return (
     <article
       className={`${styles.sucursal} ${
-        (index == 1 || index % 12 == 0) && !isPrincipal ? "decoLeft" : ""
-      } ${(index == 5 || index % 15 == 0) && !isPrincipal ? "decoRight" : ""}`}
+        (index === 1 || index % 12 === 0) && !isPrincipal ? "decoLeft" : ""
+      } ${
+        (index === 5 || index % 15 === 0) && !isPrincipal ? "decoRight" : ""
+      }`}
       key={index}
       {...props}
     >
@@ -143,8 +147,8 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
         <div className={`${styles.top} ${isPrincipal ? "isPrincipal" : ""}`}>
           <div className={styles.media}>
             <Image
-              src={featured_media.source_url}
-              alt={`Sucursal ${title.rendered} - Coopcentral`}
+              src={featured_media?.source_url || "/default-image.jpg"}
+              alt={`Sucursal ${title?.rendered || "Coopcentral"} - Coopcentral`}
               width={1920}
               height={1080}
               priority={isPrincipal}
@@ -191,7 +195,7 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
         </div>
         <div className={`${styles.body} ${isPrincipal ? "isPrincipal" : ""}`}>
           <Link className={styles.link} href={getURL(sucursal.link)}>
-            <h2 className={styles.title}>{title.rendered}</h2>
+            <h2 className={styles.title}>{title?.rendered || "Sucursal"}</h2>
           </Link>
 
           {sucursal_direction ? (
@@ -202,17 +206,17 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
               <span className={styles.text}>{sucursal_direction}</span>
             </div>
           ) : null}
-          {sucursal_tel.length ? (
+          {sucursal_tel?.length > 0 ? (
             <div className={styles.info}>
               <div className={styles.icon}>
                 <PhoneIcon />
               </div>
               <div>
-                {sucursal_tel.map((tel: any, index: number) => {
+                {sucursal_tel.map((tel: string, telIndex: number) => {
                   return (
                     <Link
                       className={styles.telLink}
-                      key={index}
+                      key={telIndex}
                       href={`tel:${tel}`}
                     >
                       <span className={styles.text}>{tel}</span>
@@ -231,16 +235,16 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
             </div>
           ) : null}
 
-          {sucursal_mail.length ? (
+          {sucursal_mail?.length > 0 ? (
             <div className={styles.info}>
               <div className={styles.icon}>
                 <MailIcon />
               </div>
-              {sucursal_mail.map((email: any, index: number) => {
+              {sucursal_mail.map((email: string, emailIndex: number) => {
                 return (
                   <Link
                     className={styles.telLink}
-                    key={index}
+                    key={emailIndex}
                     href={`mailto:${email}`}
                   >
                     <span className={styles.text}>{email}</span>
@@ -269,15 +273,15 @@ export default async function Page() {
       <section className={styles.section}>
         <div className={styles.mainContainer}>
           {sucursals.map((sucursal, index) => {
-            return index == 0 ? (
-              <Sucursal key={index} {...{ sucursal, index }} />
+            return index === 0 ? (
+              <Sucursal key={`main-${index}`} {...{ sucursal, index }} />
             ) : null;
           })}
         </div>
         <div className={styles.container}>
           {sucursals.map((sucursal, index) => {
-            return index != 0 ? (
-              <Sucursal key={index} {...{ sucursal, index }} />
+            return index !== 0 ? (
+              <Sucursal key={`secondary-${index}`} {...{ sucursal, index }} />
             ) : null;
           })}
         </div>
