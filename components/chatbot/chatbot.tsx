@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./chatbot.module.scss";
 import { ChatIcon } from "@/components/ui/icons";
 import { CloseIcon } from "@/components/ui/icons";
+import { useClientReady } from "@/hooks/useClientReady";
 
 interface Props {
   className?: string;
@@ -12,12 +13,18 @@ interface Props {
 export default function Chatbot({ className }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [iframeReady, setIframeReady] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const isClientReady = useClientReady();
 
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
-    if (!isLoaded && !isOpen) {
-      setIsLoaded(true);
+    if (!isLoaded && !isOpen && isClientReady) {
+      // Cargar el iframe solo cuando se abre por primera vez
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+        setIframeReady(true);
+      }, 500);
     }
   };
 
@@ -67,7 +74,7 @@ export default function Chatbot({ className }: Props) {
         </div>
 
         <div className={styles.chatbotBody}>
-          {isLoaded ? (
+          {isLoaded && iframeReady ? (
             <iframe
               ref={iframeRef}
               src="https://copilotstudio.microsoft.com/environments/Default-8485d054-e02c-43bf-ac43-6b7a0077c5b3/bots/crc25_coopAmigo/webchat?__version__=2"
