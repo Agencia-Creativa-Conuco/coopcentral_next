@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import { useState } from "react";
 import styles from "./loanCalculator.module.scss";
 
 interface LoanCalculation {
@@ -33,21 +34,21 @@ export default function LoanCalculator() {
     const newErrors: ValidationErrors = {};
 
     if (!amount || parseFloat(amount) <= 0) {
-      newErrors.amount = "Por favor ingrese un monto válido mayor a 0";
+      newErrors.amount = "Ingrese un monto válido";
     } else if (parseFloat(amount) < 1000) {
-      newErrors.amount = "El monto mínimo es RD$1,000";
+      newErrors.amount = "El monto mínimo es $1,000";
     } else if (parseFloat(amount) > 5000000) {
-      newErrors.amount = "El monto máximo es RD$5,000,000";
+      newErrors.amount = "El monto máximo es $5,000,000";
     }
 
     if (!term || parseInt(term) <= 0) {
-      newErrors.term = "Por favor ingrese un plazo válido mayor a 0";
+      newErrors.term = "Ingrese un plazo válido";
     } else if (parseInt(term) > 240) {
       newErrors.term = "El plazo máximo es 240 meses";
     }
 
     if (!rate || parseFloat(rate) <= 0) {
-      newErrors.rate = "Por favor ingrese una tasa válida mayor a 0";
+      newErrors.rate = "Ingrese una tasa válida";
     } else if (parseFloat(rate) > 50) {
       newErrors.rate = "La tasa máxima es 50%";
     }
@@ -57,11 +58,7 @@ export default function LoanCalculator() {
   };
 
   const calculateLoan = () => {
-    if (!validateForm()) {
-      setCalculation(null);
-      setShowTable(false);
-      return;
-    }
+    if (!validateForm()) return;
 
     const principal = parseFloat(amount);
     const months = parseInt(term);
@@ -107,171 +104,120 @@ export default function LoanCalculator() {
     return new Intl.NumberFormat("es-DO", {
       style: "currency",
       currency: "DOP",
-      minimumFractionDigits: 2,
     }).format(value);
   };
 
   return (
     <div className={styles.calculator}>
-      <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-        <div className={styles.inputs}>
-          <div className={styles.inputWrapper}>
-            <label htmlFor="amount">Monto del préstamo (RD$)</label>
-            <input
-              id="amount"
-              type="number"
-              className={`${styles.input} ${
-                errors.amount ? styles.inputError : ""
-              }`}
-              value={amount}
-              onChange={(e) => {
-                setAmount(e.target.value);
-                if (errors.amount) {
-                  setErrors({ ...errors, amount: undefined });
-                }
-              }}
-              placeholder="Ej: 500,000"
-              min="1000"
-              max="5000000"
-              step="1000"
-            />
-            {errors.amount && (
-              <span className={styles.errorMessage}>{errors.amount}</span>
-            )}
-          </div>
-
-          <div className={styles.inputWrapper}>
-            <label htmlFor="term">Plazo (meses)</label>
-            <input
-              id="term"
-              type="number"
-              className={`${styles.input} ${
-                errors.term ? styles.inputError : ""
-              }`}
-              value={term}
-              onChange={(e) => {
-                setTerm(e.target.value);
-                if (errors.term) {
-                  setErrors({ ...errors, term: undefined });
-                }
-              }}
-              placeholder="Ej: 12"
-              min="1"
-              max="240"
-            />
-            {errors.term && (
-              <span className={styles.errorMessage}>{errors.term}</span>
-            )}
-          </div>
-
-          <div className={styles.inputWrapper}>
-            <label htmlFor="rate">Tasa de interés anual (%)</label>
-            <input
-              id="rate"
-              type="number"
-              className={`${styles.input} ${
-                errors.rate ? styles.inputError : ""
-              }`}
-              value={rate}
-              onChange={(e) => {
-                setRate(e.target.value);
-                if (errors.rate) {
-                  setErrors({ ...errors, rate: undefined });
-                }
-              }}
-              placeholder="Ej: 24"
-              min="1"
-              max="50"
-              step="0.1"
-            />
-            {errors.rate && (
-              <span className={styles.errorMessage}>{errors.rate}</span>
-            )}
-          </div>
+      <div className={styles.form}>
+        <div className={styles.inputGroup}>
+          <label htmlFor="amount" className={styles.label}>
+            Monto del préstamo
+          </label>
+          <input
+            id="amount"
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className={`${styles.input} ${errors.amount ? styles.error : ""}`}
+            placeholder="Ej: 100000"
+          />
+          {errors.amount && (
+            <span className={styles.errorText}>{errors.amount}</span>
+          )}
         </div>
 
-        <div className={styles.buttonBox}>
+        <div className={styles.inputGroup}>
+          <label htmlFor="term" className={styles.label}>
+            Plazo (meses)
+          </label>
+          <input
+            id="term"
+            type="number"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+            className={`${styles.input} ${errors.term ? styles.error : ""}`}
+            placeholder="Ej: 60"
+          />
+          {errors.term && (
+            <span className={styles.errorText}>{errors.term}</span>
+          )}
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label htmlFor="rate" className={styles.label}>
+            Tasa de interés anual (%)
+          </label>
+          <input
+            id="rate"
+            type="number"
+            step="0.01"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+            className={`${styles.input} ${errors.rate ? styles.error : ""}`}
+            placeholder="Ej: 12.5"
+          />
+          {errors.rate && (
+            <span className={styles.errorText}>{errors.rate}</span>
+          )}
+        </div>
+
+        <button onClick={calculateLoan} className={styles.calculateButton}>
+          Calcular
+        </button>
+      </div>
+
+      {calculation && (
+        <div className={styles.results}>
+          <h3 className={styles.resultsTitle}>Resultados</h3>
+          <div className={styles.resultItem}>
+            <span>Pago mensual:</span>
+            <strong>{formatCurrency(calculation.monthlyPayment)}</strong>
+          </div>
+          <div className={styles.resultItem}>
+            <span>Total de intereses:</span>
+            <strong>{formatCurrency(calculation.totalInterest)}</strong>
+          </div>
+          <div className={styles.resultItem}>
+            <span>Monto total a pagar:</span>
+            <strong>{formatCurrency(calculation.totalAmount)}</strong>
+          </div>
+
           <button
-            type="button"
-            className={styles.calculateButton}
-            onClick={calculateLoan}
+            onClick={() => setShowTable(!showTable)}
+            className={styles.toggleButton}
           >
-            Calcular préstamo
+            {showTable ? "Ocultar" : "Ver"} tabla de amortización
           </button>
-        </div>
 
-        {calculation && (
-          <>
-            <div className={styles.results}>
-              <div className={styles.result}>
-                <h4 className={styles.resultTitle}>Pago mensual</h4>
-                <h3 className={styles.resultValue}>
-                  {formatCurrency(calculation.monthlyPayment)}
-                </h3>
-              </div>
-
-              <div className={styles.result}>
-                <h4 className={styles.resultTitle}>Total de intereses</h4>
-                <h3 className={styles.resultValue}>
-                  {formatCurrency(calculation.totalInterest)}
-                </h3>
-              </div>
-
-              <div className={styles.result}>
-                <h4 className={styles.resultTitle}>Monto total a pagar</h4>
-                <h3 className={styles.resultValue}>
-                  {formatCurrency(calculation.totalAmount)}
-                </h3>
-              </div>
-            </div>
-
-            <div className={styles.buttonBox}>
-              <button
-                type="button"
-                className={styles.button}
-                onClick={() => setShowTable(!showTable)}
-              >
-                {showTable ? "Ocultar" : "Ver"} tabla de amortización
-              </button>
-            </div>
-
-            {showTable && (
-              <div className={styles.tableContainer}>
-                <table className={styles.table}>
-                  <thead className={styles.thead}>
-                    <tr>
-                      <th className={styles.th}>Mes</th>
-                      <th className={styles.th}>Pago</th>
-                      <th className={styles.th}>Capital</th>
-                      <th className={styles.th}>Interés</th>
-                      <th className={styles.th}>Balance</th>
+          {showTable && (
+            <div className={styles.tableContainer}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Mes</th>
+                    <th>Pago</th>
+                    <th>Capital</th>
+                    <th>Interés</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {calculation.amortizationTable.map((row) => (
+                    <tr key={row.month}>
+                      <td>{row.month}</td>
+                      <td>{formatCurrency(row.payment)}</td>
+                      <td>{formatCurrency(row.principal)}</td>
+                      <td>{formatCurrency(row.interest)}</td>
+                      <td>{formatCurrency(row.balance)}</td>
                     </tr>
-                  </thead>
-                  <tbody className={styles.tbody}>
-                    {calculation.amortizationTable.map((row) => (
-                      <tr key={row.month} className={styles.tr}>
-                        <td className={styles.td}>{row.month}</td>
-                        <td className={styles.td}>
-                          {formatCurrency(row.payment)}
-                        </td>
-                        <td className={styles.td}>
-                          {formatCurrency(row.principal)}
-                        </td>
-                        <td className={styles.td}>
-                          {formatCurrency(row.interest)}
-                        </td>
-                        <td className={styles.td}>
-                          {formatCurrency(row.balance)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </>
-        )}
-      </form>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

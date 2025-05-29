@@ -64,7 +64,7 @@ export default function Form({
               onReady={() => {
                 console.log("Form ready");
               }}
-              onSubmit={() => {
+              onFormSubmitted={() => {
                 setSubmited(true);
               }}
               loading={

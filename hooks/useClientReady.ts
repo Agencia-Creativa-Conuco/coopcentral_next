@@ -1,23 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, RefObject } from "react";
 
-export function useClientReady() {
+// Hook para verificar si el componente está montado en el cliente
+export function useClientReady(): boolean {
   const [isClientReady, setIsClientReady] = useState(false);
 
   useEffect(() => {
-    // Esperar a que el componente se monte completamente
-    const timer = setTimeout(() => {
-      setIsClientReady(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
+    setIsClientReady(true);
   }, []);
 
   return isClientReady;
 }
 
-export function useIntersectionObserver(threshold: number = 0.1) {
+// Hook para intersection observer
+export function useIntersectionObserver(threshold = 0.1) {
   const [isVisible, setIsVisible] = useState(false);
   const [element, setElement] = useState<Element | null>(null);
 
@@ -26,10 +23,7 @@ export function useIntersectionObserver(threshold: number = 0.1) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
+        setIsVisible(entry.isIntersecting);
       },
       { threshold }
     );
@@ -42,4 +36,13 @@ export function useIntersectionObserver(threshold: number = 0.1) {
   }, [element, threshold]);
 
   return { isVisible, setElement };
+}
+
+// Hook para focus cuando un elemento está visible
+export function useFocusEffect(ref: RefObject<HTMLElement>, isActive: boolean) {
+  useEffect(() => {
+    if (isActive && ref.current) {
+      ref.current.focus();
+    }
+  }, [isActive, ref]);
 }
