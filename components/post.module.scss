@@ -1,7 +1,7 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  @include space();
+  @include topSpace();
   @include gap();
   padding-bottom: 20%;
 }

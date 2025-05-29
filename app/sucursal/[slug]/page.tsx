@@ -7,7 +7,123 @@ import {
 import Image from "next/image";
 import styles from "./page.module.scss";
 import Link from "next/link";
-import { getFeaturedMediaById, getSucursalBySlug } from "@/lib/wordpress";
+import {
+  getFeaturedMediaById,
+  getSucursalBySlug,
+  getAllSucursals,
+} from "@/lib/wordpress";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateStaticParams() {
+  const sucursales = await getAllSucursals();
+
+  return sucursales.map((sucursal) => ({
+    slug: sucursal.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const sucursal = await getSucursalBySlug(slug);
+
+  if (!sucursal) {
+    return {
+      title: "Sucursal no encontrada - Coopcentral",
+      description: "La sucursal que buscas no se encuentra disponible.",
+    };
+  }
+
+  const { title, featured_media, meta_box } = sucursal;
+  const featured_media_url = featured_media
+    ? (await getFeaturedMediaById(featured_media)).source_url
+    : "/default-og-image.png";
+
+  const {
+    sucursal_direction,
+    sucursal_tel = [],
+    sucursal_mail = [],
+    sucursal_schedule,
+  } = meta_box;
+
+  const sucursalTitle = title.rendered;
+  const description = `Visita nuestra sucursal ${sucursalTitle} de Coopcentral. Dirección: ${sucursal_direction}. Horarios: ${sucursal_schedule}. Contáctanos para todos tus servicios financieros.`;
+
+  return {
+    title: `${sucursalTitle} - Coopcentral`,
+    description: description,
+    keywords: [
+      "sucursal",
+      "coopcentral",
+      sucursalTitle.toLowerCase(),
+      "oficina",
+      "ubicación",
+      "dirección",
+      "horarios",
+      "servicios financieros",
+      "cooperativa",
+    ],
+    openGraph: {
+      title: `${sucursalTitle} - Coopcentral`,
+      description: description,
+      type: "website",
+      url: `https://www.coopcentral.do/sucursal/${slug}`,
+      siteName: "Coopcentral",
+      images: [
+        {
+          url: featured_media_url,
+          width: 1200,
+          height: 630,
+          alt: `Sucursal ${sucursalTitle} - Coopcentral`,
+        },
+      ],
+      locale: "es_DO",
+    },
+    alternates: {
+      canonical: `https://www.coopcentral.do/sucursal/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    other: {
+      "application/ld+json": JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: `Coopcentral - ${sucursalTitle}`,
+        description: description,
+        image: featured_media_url,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: sucursal_direction,
+          addressCountry: "DO",
+        },
+        telephone: sucursal_tel.length ? sucursal_tel[0] : "",
+        email: sucursal_mail.length ? sucursal_mail[0] : "",
+        openingHours: sucursal_schedule,
+        url: `https://www.coopcentral.do/sucursal/${slug}`,
+        parentOrganization: {
+          "@type": "Organization",
+          name: "Coopcentral",
+          url: "https://www.coopcentral.do",
+        },
+      }),
+    },
+    category: "Sucursales",
+  };
+}
 
 export default async function Page({
   params,
@@ -16,6 +132,10 @@ export default async function Page({
 }) {
   const { slug } = await params;
   const post = await getSucursalBySlug(slug);
+
+  if (!post) {
+    return <div>Sucursal no encontrada</div>;
+  }
 
   const { title, featured_media, meta_box }: any = post;
   const image = await getFeaturedMediaById(featured_media);
@@ -35,17 +155,12 @@ export default async function Page({
         <div className={styles.media}>
           <Image
             src={image.source_url}
-            alt={title}
+            alt={`Sucursal ${title.rendered} - Coopcentral`}
             width={1920}
             height={1080}
             priority
           />
-          <div
-            className={styles.bgSection}
-            // image={featured_media}
-            // beforeBg={colors.primary.light}
-            // afterBg={colors.primary.dark}
-          ></div>
+          <div className={styles.bgSection}></div>
         </div>
         <div className={styles.container}>
           <div className={styles.wrapper}>
@@ -56,8 +171,8 @@ export default async function Page({
                   src={sucursal_code_map}
                   width="800"
                   height="200"
-                  //   allowfullscreen=""
                   loading="lazy"
+                  title={`Mapa de ubicación - Sucursal ${title.rendered}`}
                 ></iframe>
               </div>
             </div>

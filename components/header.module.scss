@@ -35,7 +35,7 @@
   @include container();
 
   @include mq(lg) {
-    margin-top: -2.188rem;
+    // margin-top: -2.188rem;
     grid-template-columns: 9.375rem 1fr;
     gap: 1.875rem;
     align-items: center;
@@ -68,7 +68,7 @@
 
   img {
     width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: 16/9;
     object-fit: contain;
     position: relative;
     z-index: 2;

@@ -13,6 +13,7 @@
 }
 
 .content {
+  @include gap();
   @include mq(lg) {
     max-width: 57rem;
     margin: 0 auto;

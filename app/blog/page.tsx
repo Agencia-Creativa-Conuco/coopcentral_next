@@ -1,4 +1,49 @@
+import { Metadata, ResolvingMetadata } from "next";
+
 const host = process.env.WORDPRESS_URL;
+
+// Definir Props si es necesario para generateMetadata, aunque para una página de listado de blog puede no serlo.
+// type Props = {
+//   params: { /* tus parámetros si los tienes */ };
+//   searchParams: { [key: string]: string | string[] | undefined };
+// };
+
+export async function generateMetadata(
+  // { params, searchParams }: Props, // Descomenta si usas params o searchParams
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // Para una página de listado de blog, puedes tener un título y descripción genéricos
+  // o podrías obtener datos de una página específica de WordPress si tienes una para "Blog"
+  const pageTitle = "Blog - Coopcentral";
+  const pageDescription =
+    "Descubre las últimas noticias, artículos y consejos en el blog de Coopcentral.";
+  const siteUrl = "https://www.coopcentral.do/blog";
+  const defaultOgImage = "/default-og-image.png";
+
+  return {
+    title: pageTitle,
+    description: pageDescription,
+    openGraph: {
+      title: pageTitle,
+      description: pageDescription,
+      url: siteUrl,
+      siteName: "Coopcentral",
+      images: [
+        {
+          url: defaultOgImage,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "es_DO",
+      type: "website",
+    },
+    alternates: {
+      canonical: siteUrl,
+    },
+  };
+}
+
 import React, { use } from "react";
 import styles from "./page.module.scss";
 import Image from "next/image";

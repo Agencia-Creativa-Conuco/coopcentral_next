@@ -11,6 +11,50 @@ import styles from "./page.module.scss";
 import HomeProducts from "@/components/frontpage/homeProducts";
 import HomeNewsletter from "@/components/frontpage/homeNewsletter";
 import HomeContact from "@/components/frontpage/homeContact";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // Obtener datos de la página
+  const page = await getPageBySlug("coopcentral");
+  const featured_media_url = page.featured_media
+    ? (await getFeaturedMediaById(page.featured_media)).source_url
+    : "/default-og-image.png"; // Proporciona una imagen por defecto
+
+  return {
+    title: page.title?.rendered
+      ? `${page.title.rendered} - Coopcentral`
+      : "Coopcentral",
+    description: page.excerpt?.rendered || (await parent).description,
+    openGraph: {
+      title: page.title?.rendered
+        ? `${page.title.rendered} - Coopcentral`
+        : "Coopcentral",
+      description:
+        page.excerpt?.rendered ||
+        (await parent).description ||
+        "Bienvenido a Coopcentral",
+      url: `https://www.coopcentral.do`,
+      siteName: "Coopcentral",
+      images: [
+        {
+          url: featured_media_url,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "es_DO",
+      type: "website",
+    },
+  };
+}
 
 // This page is using the craft.tsx component and design system
 export default async function Home() {
@@ -26,8 +70,9 @@ export default async function Home() {
       };
     })
   );
-  const featured_media = (await getFeaturedMediaById(page.featured_media))
-    .source_url;
+  const featured_media = page.featured_media
+    ? (await getFeaturedMediaById(page.featured_media)).source_url
+    : "/default-og-image.png";
   const { title, content, meta_box } = page;
 
   return (

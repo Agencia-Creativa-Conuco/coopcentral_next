@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/site.config";
-import { cn } from "@/lib/utils";
+import { cn, getURL } from "@/lib/utils";
 
 import type { Metadata } from "next";
 import Header from "@/components/header";
@@ -20,9 +20,23 @@ const font = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "WordPress & Next.js Starter by 9d8",
-  description:
-    "A starter template for Next.js with WordPress as a headless CMS.",
+  title: "Coopcentral",
+  description: "Solución a tus iniciativas de vida",
+  openGraph: {
+    title: "Coopcentral",
+    description: "Solución a tus iniciativas de vida",
+    url: `https://www.coopcentral.do`,
+    siteName: "Coopcentral",
+    images: [
+      {
+        url: "/default-og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "es_DO",
+    type: "website",
+  },
   metadataBase: new URL(siteConfig.site_domain),
   alternates: {
     canonical: "/",

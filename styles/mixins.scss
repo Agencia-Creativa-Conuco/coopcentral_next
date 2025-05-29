@@ -41,6 +41,14 @@ $xlq: 1200px;
   }
 }
 
+@mixin topSpace {
+  margin-top: 5rem;
+
+  @include mq(lg) {
+    margin-top: 7.5rem;
+  }
+}
+
 @mixin space {
   margin-top: 6.25rem;
   margin-bottom: 6.25rem;

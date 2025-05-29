@@ -9,10 +9,109 @@ import Link from "next/link";
 import styles from "./page.module.scss";
 import { getURL } from "@/lib/utils";
 import { getAllSucursals, getFeaturedMediaById } from "@/lib/wordpress";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface SucursalProps {
   sucursal: any;
   index: number;
+}
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const sucursales = await getAllSucursals();
+  const defaultOgImage = "/default-og-image.png";
+
+  // Obtener imagen de la sucursal principal si existe
+  let featuredImage = defaultOgImage;
+  if (sucursales.length > 0 && sucursales[0].featured_media) {
+    const media = await getFeaturedMediaById(sucursales[0].featured_media);
+    featuredImage = media.source_url || defaultOgImage;
+  }
+
+  const description = `Encuentra todas las sucursales de Coopcentral en República Dominicana. Ubicaciones, horarios, teléfonos y direcciones de nuestras oficinas. ${sucursales.length} sucursales a tu servicio.`;
+
+  return {
+    title: "Sucursales - Coopcentral",
+    description: description,
+    keywords: [
+      "sucursales",
+      "coopcentral",
+      "oficinas",
+      "ubicaciones",
+      "direcciones",
+      "horarios",
+      "teléfonos",
+      "república dominicana",
+      "cooperativa",
+      "servicios financieros",
+    ],
+    openGraph: {
+      title: "Sucursales - Coopcentral",
+      description: description,
+      type: "website",
+      url: "https://www.coopcentral.do/sucursales",
+      siteName: "Coopcentral",
+      images: [
+        {
+          url: featuredImage,
+          width: 1200,
+          height: 630,
+          alt: "Sucursales de Coopcentral en República Dominicana",
+        },
+      ],
+      locale: "es_DO",
+    },
+    alternates: {
+      canonical: "https://www.coopcentral.do/sucursales",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    other: {
+      "application/ld+json": JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Coopcentral",
+        url: "https://www.coopcentral.do",
+        description:
+          "Cooperativa de servicios financieros en República Dominicana",
+        branchOf: {
+          "@type": "Organization",
+          name: "Coopcentral",
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Servicios Financieros",
+          itemListElement: sucursales.slice(0, 5).map((sucursal, index) => {
+            const { meta_box } = sucursal;
+            return {
+              "@type": "LocalBusiness",
+              name: `Coopcentral - ${sucursal.title.rendered}`,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: meta_box.sucursal_direction || "",
+                addressCountry: "DO",
+              },
+              telephone: meta_box.sucursal_tel?.[0] || "",
+              url: `https://www.coopcentral.do/sucursal/${sucursal.slug}`,
+            };
+          }),
+        },
+      }),
+    },
+    category: "Sucursales",
+  };
 }
 
 async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
@@ -47,7 +146,7 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
           <div className={styles.media}>
             <Image
               src={featured_media.source_url}
-              alt={title}
+              alt={`Sucursal ${title.rendered} - Coopcentral`}
               width={1920}
               height={1080}
               priority={isPrincipal}
@@ -59,6 +158,7 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
             width="318.311"
             height="324.809"
             viewBox="0 0 318.311 324.809"
+            aria-hidden="true"
           >
             <path
               id="Trazado_708"
@@ -77,6 +177,7 @@ async function Sucursal({ sucursal, index, ...props }: SucursalProps) {
             width="182.42"
             height="119.832"
             viewBox="0 0 182.42 119.832"
+            aria-hidden="true"
           >
             <path
               id="Trazado_2410"
