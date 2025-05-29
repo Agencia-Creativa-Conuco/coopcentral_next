@@ -5,7 +5,7 @@ type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  site_name: "next-wp",
-  site_description: "Starter template for Headless WordPress with Next.js",
-  site_domain: "https://next-wp.com",
+  site_name: "Coopcentral",
+  site_description: "Solución a tus iniciativas de vida",
+  site_domain: "https://www.coopcentral.do",
 };
