@@ -1,19 +1,8 @@
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 const host = process.env.WORDPRESS_URL;
 
-// Definir Props si es necesario para generateMetadata, aunque para una página de listado de blog puede no serlo.
-// type Props = {
-//   params: { /* tus parámetros si los tienes */ };
-//   searchParams: { [key: string]: string | string[] | undefined };
-// };
-
-export async function generateMetadata(
-  // { params, searchParams }: Props, // Descomenta si usas params o searchParams
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // Para una página de listado de blog, puedes tener un título y descripción genéricos
-  // o podrías obtener datos de una página específica de WordPress si tienes una para "Blog"
+export async function generateMetadata(): Promise<Metadata> {
   const pageTitle = "Blog - Coopcentral";
   const pageDescription =
     "Descubre las últimas noticias, artículos y consejos en el blog de Coopcentral.";

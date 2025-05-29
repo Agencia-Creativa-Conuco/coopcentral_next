@@ -76,6 +76,8 @@ export interface Post extends WPEntity {
   categories: number[];
   tags: number[];
   meta: Record<string, unknown>;
+  meta_box?: MetaBox;
+  menu_order?: number;
 }
 
 export interface Page extends WPEntity {
@@ -90,7 +92,48 @@ export interface Page extends WPEntity {
   ping_status: "open" | "closed";
   template: string;
   meta: Record<string, unknown>;
-  meta_box: any;
+  meta_box?: MetaBox;
+}
+
+// Meta Box types
+export interface MetaBox {
+  [key: string]: any;
+  // Campos comunes de sucursales
+  sucursal_direction?: string;
+  sucursal_tel?: string[];
+  sucursal_mail?: string[];
+  sucursal_schedule?: string;
+  sucursal_url_map?: string;
+  sucursal_code_map?: string;
+
+  // Campos de productos
+  cta?: string;
+  cta_type?: string;
+  cta_url?: string;
+  copy?: string;
+
+  // Campos de páginas
+  about_cover_copy?: string;
+  about_administrative_title?: string;
+  about_administrative_show?: string;
+  about_administrative_group?: Array<{
+    organization: string;
+    members: Array<{
+      name: string;
+      jobtitle: string;
+    }>;
+  }>;
+
+  // Campos de club social
+  social_club_cover_copy?: string;
+  social_club_partner_title?: string;
+  social_club_partner_requirements?: string[];
+  social_club_carrousel_images?: Array<{
+    full_url: string;
+  }>;
+
+  // Campos de formulario
+  form_id?: string;
 }
 
 // Taxonomy types

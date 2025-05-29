@@ -12,7 +12,7 @@ import {
   getSucursalBySlug,
   getAllSucursals,
 } from "@/lib/wordpress";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   const sucursales = await getAllSucursals();
@@ -37,20 +37,24 @@ export async function generateMetadata({
     };
   }
 
-  const { title, featured_media, meta_box } = sucursal;
+  const { title, featured_media, meta_box } = sucursal as any;
   const featured_media_url = featured_media
     ? (await getFeaturedMediaById(featured_media)).source_url
     : "/default-og-image.png";
 
   const {
-    sucursal_direction,
+    sucursal_direction = "",
     sucursal_tel = [],
     sucursal_mail = [],
-    sucursal_schedule,
-  } = meta_box;
+    sucursal_schedule = "",
+  } = meta_box || {};
 
-  const sucursalTitle = title.rendered;
-  const description = `Visita nuestra sucursal ${sucursalTitle} de Coopcentral. Dirección: ${sucursal_direction}. Horarios: ${sucursal_schedule}. Contáctanos para todos tus servicios financieros.`;
+  const sucursalTitle = title?.rendered || "Sucursal";
+  const description = `Visita nuestra sucursal ${sucursalTitle} de Coopcentral. ${
+    sucursal_direction ? `Dirección: ${sucursal_direction}.` : ""
+  } ${
+    sucursal_schedule ? `Horarios: ${sucursal_schedule}.` : ""
+  } Contáctanos para todos tus servicios financieros.`;
 
   return {
     title: `${sucursalTitle} - Coopcentral`,
@@ -137,17 +141,17 @@ export default async function Page({
     return <div>Sucursal no encontrada</div>;
   }
 
-  const { title, featured_media, meta_box }: any = post;
+  const { title, featured_media, meta_box } = post as any;
   const image = await getFeaturedMediaById(featured_media);
 
   const {
-    sucursal_direction,
+    sucursal_direction = "",
     sucursal_tel = [],
-    sucursal_mail,
-    sucursal_schedule,
-    sucursal_url_map,
-    sucursal_code_map,
-  } = meta_box;
+    sucursal_mail = [],
+    sucursal_schedule = "",
+    sucursal_url_map = "",
+    sucursal_code_map = "",
+  } = meta_box || {};
 
   return (
     <main>

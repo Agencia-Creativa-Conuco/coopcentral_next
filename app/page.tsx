@@ -11,17 +11,14 @@ import styles from "./page.module.scss";
 import HomeProducts from "@/components/frontpage/homeProducts";
 import HomeNewsletter from "@/components/frontpage/homeNewsletter";
 import HomeContact from "@/components/frontpage/homeContact";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // Obtener datos de la página
   const page = await getPageBySlug("coopcentral");
   const featured_media_url = page.featured_media
@@ -32,15 +29,12 @@ export async function generateMetadata(
     title: page.title?.rendered
       ? `${page.title.rendered} - Coopcentral`
       : "Coopcentral",
-    description: page.excerpt?.rendered || (await parent).description,
+    description: page.excerpt?.rendered || "Bienvenido a Coopcentral",
     openGraph: {
       title: page.title?.rendered
         ? `${page.title.rendered} - Coopcentral`
         : "Coopcentral",
-      description:
-        page.excerpt?.rendered ||
-        (await parent).description ||
-        "Bienvenido a Coopcentral",
+      description: page.excerpt?.rendered || "Bienvenido a Coopcentral",
       url: `https://www.coopcentral.do`,
       siteName: "Coopcentral",
       images: [

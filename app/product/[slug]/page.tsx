@@ -5,17 +5,13 @@ import Cover from "./cover";
 import Info from "./info";
 import Requirements from "./requirements";
 import Guide from "./guide";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
-type Props = {
+export async function generateMetadata({
+  params,
+}: {
   params: Promise<{ slug: string }>;
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+}): Promise<Metadata> {
   const { slug } = await params;
 
   // Obtener datos del producto

@@ -4,17 +4,14 @@ import { getPageBySlug, getFeaturedMediaById } from "@/lib/wordpress";
 import AboutObjetive from "./aboutObjetive";
 import AboutHistory from "./aboutHistory";
 import AboutTeam from "./aboutTeam";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // Obtener datos de la página
   const page = await getPageBySlug("nosotros");
   const featured_media_url = page.featured_media

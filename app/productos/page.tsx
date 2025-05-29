@@ -5,17 +5,14 @@ import { getPageBySlug, getFeaturedMediaById } from "@/lib/wordpress";
 import ProductsInfo from "./productInfo";
 import ProductsBeneficts from "./productBeneficts";
 import ProductsCalcultor from "./productCalculator";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  // { params, searchParams }: Props, // Descomenta si necesitas usar parámetros
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // Obtener datos de la página
   const page = await getPageBySlug("productos");
   const featured_media_url = page.featured_media

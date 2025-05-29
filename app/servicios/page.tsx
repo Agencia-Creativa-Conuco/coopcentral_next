@@ -4,16 +4,14 @@ import ServiceCover from "./serviciosCover";
 import { getPageBySlug, getFeaturedMediaById } from "@/lib/wordpress";
 import ServiceInfo from "./serviciosInfo";
 import ServiceGuide from "./serviciosGuide";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // Obtener datos de la página
   const page = await getPageBySlug("servicios");
   const featured_media_url = page.featured_media

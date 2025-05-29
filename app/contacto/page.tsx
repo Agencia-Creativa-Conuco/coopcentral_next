@@ -2,17 +2,14 @@ import React from "react";
 import styles from "./page.module.scss";
 import ContactCover from "./contactCover";
 import { getPageBySlug, getFeaturedMediaById } from "@/lib/wordpress";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // Obtener datos de la página
   const page = await getPageBySlug("contacto");
   const featured_media_url = page.featured_media

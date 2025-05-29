@@ -9,16 +9,14 @@ import Link from "next/link";
 import styles from "./page.module.scss";
 import { getURL } from "@/lib/utils";
 import { getAllSucursals, getFeaturedMediaById } from "@/lib/wordpress";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 interface SucursalProps {
   sucursal: any;
   index: number;
 }
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const sucursales = await getAllSucursals();
   const defaultOgImage = "/default-og-image.png";
 
@@ -100,11 +98,11 @@ export async function generateMetadata(
               name: `Coopcentral - ${sucursal.title.rendered}`,
               address: {
                 "@type": "PostalAddress",
-                streetAddress: meta_box.sucursal_direction || "",
+                streetAddress: meta_box?.sucursal_direction || "",
                 addressCountry: "DO",
               },
-              telephone: meta_box.sucursal_tel?.[0] || "",
-              url: `https://www.coopcentral.do/sucursal/${sucursal.slug}`,
+              telephone: meta_box?.sucursal_tel?.[0] || "",
+              url: `https://www.coopcentral.do/sucursal/${sucursal?.slug}`,
             };
           }),
         },
