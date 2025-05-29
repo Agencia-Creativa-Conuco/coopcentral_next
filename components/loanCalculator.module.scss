@@ -1,236 +1,274 @@
-@use "@/stles/mixins.scss" as *;
+@use "@/styles/mixins.scss" as *;
 
+.calculator {
+  padding: 2.5rem 0.938rem;
 
-const Calculator = styled.div`
-    ${({bgColor="#FAFAFA"})=>css`
-        /* background-color: ${bgColor}; */
-        /* box-shadow: 0 0 0.625rem rgba(0,0,0,0.15); */
-        /* border-radius: 1.25rem; */
-        padding: 2.5rem 0.938rem;
-        ${mq.lg}{
-            padding: 2.5rem;
-        }
-    `}
-`;
+  @include mq(lg) {
+    padding: 2.5rem;
+  }
+}
 
-const Form = styled.form`
-    border-radius: 1.25rem;
-    margin: 0;
-`;
+.form {
+  border-radius: 1.25rem;
+  margin: 0;
+}
 
-const Switch = styled.label`
-    margin-bottom: 1.25rem;
-    display: block;
-`;
+.inputs {
+  margin-bottom: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 
-const SwitchInput = styled.input``;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 2rem;
+  }
+}
 
-const SwitchText = styled.span`
-    margin-left: 0.625rem;
-`;
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
 
-const Inputs = styled.div`
-    margin-bottom: 1.25rem;
-    ${mq.md}{
-        margin-bottom: initial;
-    }
-`;
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-base);
+    font-size: 0.9rem;
+  }
+}
 
-const InputWrapper = styled.div`
-    margin-bottom: 1.25rem;
-`;
+.input {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  border: 2px solid #e0e0e0;
+  line-height: 1;
+  padding: 15px;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  background-color: #ffffff;
+  color: var(--primary-base);
+  font-size: 1rem;
+  transition: all 0.3s ease;
 
-const Input = styled.input`
-    ${({bgColor="#26974711", textColor="green"})=>css`
-        display: block;
-        width: 100%;
-        margin: 0 auto;
-        border: none;
-        line-height: 1;
-        padding: 15px;
-        border-radius: 0.312rem;
-        font-weight: bold;
-        background-color: ${bgColor};
-        color: ${textColor};
-        &:focus{
-            outline: initial;
-            border-color: red;
-        }
-        ${mq.sm}{
-            font-size: 20px;
-        }
-        ${mq.lg}{
-            font-size: 20px;
-        }
-    `}
-`;
+  &:focus {
+    outline: none;
+    border-color: var(--primary-base);
+    box-shadow: 0 0 0 3px rgba(41, 151, 67, 0.1);
+  }
 
-const InputError = styled.p`
-    ${({color = "red"})=>css`
-        color: ${color};
-    `}
-`;
+  &::placeholder {
+    color: #999;
+    font-weight: 400;
+  }
 
-const Message = styled.textarea`
-    ${({color="#F5F5F5"})=>css`
-        display: block;
-        width: 100%;
-        height: 9.375rem;
-        margin: 0 auto;
-        margin-bottom: 20px;
-        border: none;
-        line-height: 1;
-        padding: 15px;
-        box-shadow: 0 .3.125rem .3.125rem rgba(0,0,0,0.1);
-        border-radius: 0.312rem;
-        font-weight: bold;
-        &:focus{
-            outline: initial;
-            border-color: red;
-        }
-        ${mq.sm}{
-            font-size: 20px;
-        }
-        ${mq.lg}{
-            font-size: 20px;
-        }
-    `}
-`;
+  @include mq(sm) {
+    font-size: 1.1rem;
+  }
 
-const ctaStyle = ({
-    color="darkgray",
-    colorDisabled="green",
-    bgColor="green",
-    bgColorDisabled="lightgray"
-}) => css`
-    display: block;
-    width: 100%;
-    background-color: ${bgColor};
-    color: ${color};
-    padding: 0.938rem;
-    text-align: center;
-    margin-bottom: 1.25rem;
-    outline: initial;
-    border: initial;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 0.625rem;
-    &:disabled{
-        color: ${colorDisabled};
-        background-color: ${bgColorDisabled};
-        cursor: not-allowed;
-    }
-`;
+  @include mq(lg) {
+    font-size: 1.1rem;
+  }
+}
 
-const Submit = styled.input`
-    ${ctaStyle}
-    /* margin: 0 auto;
-    margin-bottom: 1.25rem;
-    display: block;
-    padding: 15px 45px; */
-`;
+.inputError {
+  border-color: #dc3545 !important;
 
-const Button = styled.button`
-    ${ctaStyle}
-    /* margin: 0 auto;
-    margin-bottom: 1.25rem;
-    padding: 15px 45px; */
-`;
+  &:focus {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+  }
+}
 
-const ButtonBox = styled.div`
-    text-align: center;
-    width: 100%;
-`;
+.errorMessage {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
 
+.results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 
-const ErrorMessages = styled.div``;
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
-const ErrorMessage = styled.p`
-    color: red;
-`;
+.result {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  border: 2px solid #e9ecef;
+}
 
-const MessageBox = styled.div`
-     
-    border-radius: 1.25rem;
-    background-color: white;
-    padding: 1.25rem;
-    margin: 0;
-    ${mq.sm}{
-        padding: 2.5rem;
-    }
-    ${mq.lg}{
-        padding: 5rem;
-        border-radius: 2.5rem;
-    }
-`;
+.resultTitle {
+  color: #484848;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
 
-const MessageTitle = styled.h3`
-    ${({color})=>css`
-        color: ${color};
-        text-align: center;
-        width: 100%;
-        margin-bottom: 1.25rem;
-    `}
-`;
+.resultValue {
+  text-align: center;
+  margin: 0;
+  font-weight: 900;
+  color: var(--primary-base);
+  font-size: 1.5rem;
 
-const MessageText = styled.p``;
+  @include mq(md) {
+    font-size: 1.3rem;
+  }
 
-const Results = styled.div``;
+  @include mq(lg) {
+    font-size: 1.5rem;
+  }
+}
 
-const Result = styled.div`
-    margin-bottom: 1.25rem;
-`;
+.buttonBox {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
 
-const ResultTitle = styled.h4`
-    color: #484848;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: left;
-    margin: 0;
-`;
-    
-const ResultValue = styled.h3`
-    text-align: left;
-    margin: 0;
-    font-weight: 900;
-`;
+.calculateButton {
+  display: inline-block;
+  background-color: var(--secondary-base);
+  color: var(--text-color-main);
+  padding: 1rem 2rem;
+  text-align: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 200px;
 
+  &:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 
-const Table = styled.table`
-    margin: 0;
-    border: initial;
-    overflow: auto;
-    width: 100%;
-`;
+  &:active {
+    transform: translateY(0);
+  }
+}
 
-const TBody = styled.tbody`
-`;
+.button {
+  display: inline-block;
+  background-color: var(--primary-base);
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 200px;
 
-const THead = styled.thead`
-    font-weight: bold;
-`;
+  &:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 
-const Tr = styled.tr`
-    ${({bgColor="#26974711"})=>css`
-        &:nth-of-type(odd){
-            background-color: ${bgColor};
-        }
-    `}
-`;
+  &:active {
+    transform: translateY(0);
+  }
+}
 
-const Th = styled.th`
-    font-weight: bold;
-    vertical-align: top;
-    padding: 10px;
-    border: initial;
-    word-break: initial;
-`;
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
 
-const Td = styled.td`
-    font-weight: normal;
-    vertical-align: top;
-    padding: 10px;
-    border: initial;
-    word-break: initial;
-`;
+.table {
+  margin: 0;
+  border: none;
+  overflow: auto;
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.thead {
+  font-weight: bold;
+  background-color: var(--primary-base);
+  color: white;
+}
+
+.tbody {
+}
+
+.tr {
+  &:nth-of-type(odd) {
+    background-color: #f8f9fa;
+  }
+
+  &:hover {
+    background-color: #e9ecef;
+  }
+}
+
+.th {
+  font-weight: bold;
+  vertical-align: top;
+  padding: 1rem 0.75rem;
+  border: none;
+  word-break: normal;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.td {
+  font-weight: normal;
+  vertical-align: top;
+  padding: 0.75rem;
+  border: none;
+  word-break: normal;
+  text-align: center;
+  font-size: 0.9rem;
+
+  @include mq(sm) {
+    font-size: 0.95rem;
+  }
+}
+
+// Responsive adjustments
+@include mq(sm) {
+  .table {
+    font-size: 0.9rem;
+  }
+
+  .th,
+  .td {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .th {
+    font-size: 0.8rem;
+  }
+
+  .td {
+    font-size: 0.8rem;
+  }
+}

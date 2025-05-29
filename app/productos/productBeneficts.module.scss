@@ -3,7 +3,7 @@
 .section {
   margin-top: -3.125rem;
   padding-top: 35%;
-  padding-bottom: 5%;
+  padding-bottom: 25%;
   position: relative;
   overflow: hidden;
   box-sizing: content-box;
@@ -40,7 +40,7 @@
 
   @include mq(lg) {
     padding-top: 20%;
-    padding-bottom: 5%;
+    padding-bottom: 15%;
     margin-top: -6.25rem;
   }
 }
