@@ -12,15 +12,14 @@ import type {
   FeaturedMedia,
 } from "./wordpress.d";
 
-const baseUrl = process.env.WORDPRESS_URL;
-
-if (!baseUrl) {
-  throw new Error("WORDPRESS_URL environment variable is not defined");
-}
+const API_URL =
+  process.env.NEXT_PUBLIC_WORDPRESS_API_URL ||
+  process.env.WORDPRESS_URL ||
+  "https://coopcentral.do";
 
 function getUrl(path: string, query?: Record<string, any>) {
   const params = query ? querystring.stringify(query) : null;
-  return `${baseUrl}${path}${params ? `?${params}` : ""}`;
+  return `${API_URL}${path}${params ? `?${params}` : ""}`;
 }
 
 class WordPressAPIError extends Error {
@@ -487,4 +486,122 @@ export async function getAllSucursal(filterParams?: {
 
   const url = getUrl("/wp-json/wp/v2/social", query);
   return wordpressFetch<Post[]>(url);
+}
+
+export interface SearchResult {
+  id: number;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  featured_media: number;
+  link: string;
+  date: string;
+  type: string;
+  slug: string;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{
+      source_url: string;
+      alt_text: string;
+    }>;
+  };
+}
+
+export interface SearchResponse {
+  results: SearchResult[];
+  total: number;
+  totalPages: number;
+}
+
+export async function searchPosts(
+  query: string,
+  page: number = 1,
+  perPage: number = 10
+): Promise<SearchResponse> {
+  if (!query.trim()) {
+    return {
+      results: [],
+      total: 0,
+      totalPages: 0,
+    };
+  }
+
+  const searchParams = new URLSearchParams({
+    search: query,
+    page: page.toString(),
+    per_page: perPage.toString(),
+    _embed: "true",
+  });
+
+  try {
+    const endpoints = [
+      { endpoint: "posts", type: "post" },
+      { endpoint: "pages", type: "page" },
+      { endpoint: "product", type: "product" },
+      { endpoint: "social", type: "social" },
+      { endpoint: "sucursal", type: "sucursal" },
+    ];
+
+    const requests = endpoints.map(async ({ endpoint, type }) => {
+      try {
+        const url = `${API_URL}/wp-json/wp/v2/${endpoint}?${searchParams}`;
+        console.log(`Fetching: ${url}`); // Debug log
+
+        const response = await fetch(url, {
+          next: { revalidate: 300 },
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          console.warn(`Failed to fetch ${endpoint}:`, response.status);
+          return [];
+        }
+
+        const data = await response.json();
+        return Array.isArray(data)
+          ? data.map((item: any) => ({ ...item, type }))
+          : [];
+      } catch (error) {
+        console.warn(`Error fetching ${endpoint}:`, error);
+        return [];
+      }
+    });
+
+    const results = await Promise.all(requests);
+    const allResults = results.flat();
+
+    // Ordenar por relevancia
+    const sortedResults = allResults.sort((a, b) => {
+      const aTitle = a.title?.rendered?.toLowerCase() || "";
+      const bTitle = b.title?.rendered?.toLowerCase() || "";
+      const searchLower = query.toLowerCase();
+
+      const aTitleMatch = aTitle.includes(searchLower);
+      const bTitleMatch = bTitle.includes(searchLower);
+
+      if (aTitleMatch && !bTitleMatch) return -1;
+      if (!aTitleMatch && bTitleMatch) return 1;
+
+      return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime();
+    });
+
+    // Paginación
+    const startIndex = (page - 1) * perPage;
+    const endIndex = startIndex + perPage;
+    const paginatedResults = sortedResults.slice(startIndex, endIndex);
+
+    return {
+      results: paginatedResults,
+      total: sortedResults.length,
+      totalPages: Math.ceil(sortedResults.length / perPage),
+    };
+  } catch (error) {
+    console.error("Error in searchPosts:", error);
+    return {
+      results: [],
+      total: 0,
+      totalPages: 0,
+    };
+  }
 }

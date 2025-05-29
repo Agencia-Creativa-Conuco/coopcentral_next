@@ -36,7 +36,7 @@
 
   @include mq(lg) {
     // margin-top: -2.188rem;
-    grid-template-columns: 9.375rem 1fr;
+    grid-template-columns: 9.375rem 1fr auto;
     gap: 1.875rem;
     align-items: center;
   }
@@ -95,7 +95,14 @@
   top: 50%;
   right: 0;
   transform: translate(0, -50%);
-  @include gap();
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.1rem;
+  @include mq(lg) {
+    display: initial;
+    grid-template-columns: initial;
+    gap: initial;
+  }
 }
 
 .menuButton {

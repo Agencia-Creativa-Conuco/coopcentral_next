@@ -1,0 +1,302 @@
+@use "@/styles/mixins.scss" as *;
+
+.container {
+  @include container();
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  min-height: 60vh;
+}
+
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+
+  @include mq(md) {
+    text-align: left;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-base);
+
+  @include mq(md) {
+    font-size: 2.5rem;
+  }
+}
+
+.query {
+  color: var(--text-color-main);
+  font-weight: normal;
+}
+
+.summary {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+
+  p {
+    margin-top: 1rem;
+    color: #666;
+  }
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary-base);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  background-color: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: #c62828;
+  }
+}
+
+.noResults {
+  text-align: center;
+  padding: 4rem 2rem;
+
+  h2 {
+    color: var(--primary-base);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+}
+
+.results {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 4rem;
+
+  @include mq(md) {
+    gap: 2.5rem;
+  }
+}
+
+.resultCard {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.cardContent {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include mq(md) {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+
+  @include mq(md) {
+    height: auto;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cardBody {
+  padding: 1.5rem;
+
+  @include mq(md) {
+    padding: 2rem;
+  }
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.cardType {
+  background-color: var(--primary-base);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+
+  // Colores específicos por tipo de contenido
+  &[data-type="post"] {
+    background-color: var(--primary-base);
+  }
+
+  &[data-type="page"] {
+    background-color: #6366f1;
+  }
+
+  &[data-type="product"] {
+    background-color: var(--secondary-base);
+    color: var(--text-color-main);
+  }
+
+  &[data-type="social"] {
+    background-color: #f59e0b;
+  }
+
+  &[data-type="sucursal"] {
+    background-color: #10b981;
+  }
+}
+
+.cardDate {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #666;
+}
+
+.cardTitle {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+
+  @include mq(md) {
+    font-size: 1.5rem;
+  }
+
+  a {
+    color: var(--primary-base);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+  }
+}
+
+.cardExcerpt {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// Paginación con el mismo estilo visual del blog
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 4rem 0 2rem 0;
+
+  @include mq(sm) {
+    gap: 2rem;
+  }
+}
+
+.paginationButton {
+  background-color: var(--primary-base);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  min-width: 120px;
+  text-align: center;
+
+  &:hover {
+    background-color: var(--primary-dark);
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  @include mq(sm) {
+    padding: 1.2rem 2.5rem;
+    font-size: 1rem;
+    min-width: 140px;
+  }
+}
+
+.paginationButtonDisabled {
+  background-color: #e0e0e0;
+  color: #999;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 120px;
+  text-align: center;
+  cursor: not-allowed;
+
+  @include mq(sm) {
+    padding: 1.2rem 2.5rem;
+    font-size: 1rem;
+    min-width: 140px;
+  }
+}
+
+.paginationInfo {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  color: var(--text-color-main);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 80px;
+  text-align: center;
+
+  @include mq(sm) {
+    padding: 1.2rem 2rem;
+    font-size: 1rem;
+    min-width: 100px;
+  }
+}
