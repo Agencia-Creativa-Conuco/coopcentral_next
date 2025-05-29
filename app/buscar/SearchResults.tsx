@@ -19,29 +19,29 @@ export default function SearchResults() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const performSearch = async () => {
+      setLoading(true);
+      setError("");
+
+      try {
+        const response = await searchPosts(query, page, 10);
+        setResults(response.results);
+        setTotal(response.total);
+        setTotalPages(response.totalPages);
+      } catch (err) {
+        setError("Error al realizar la búsqueda");
+        console.error("Search error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (query) {
       performSearch();
     } else {
       setLoading(false);
     }
   }, [query, page]);
-
-  const performSearch = async () => {
-    setLoading(true);
-    setError("");
-
-    try {
-      const response = await searchPosts(query, page, 10);
-      setResults(response.results);
-      setTotal(response.total);
-      setTotalPages(response.totalPages);
-    } catch (err) {
-      setError("Error al realizar la búsqueda");
-      console.error("Search error:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const formatDate = (dateString: string) => {
     try {
@@ -130,7 +130,8 @@ export default function SearchResults() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>
-          Resultados para: <span className={styles.query}>"{query}"</span>
+          Resultados para:{" "}
+          <span className={styles.query}>&ldquo;{query}&rdquo;</span>
         </h1>
 
         {!error && (

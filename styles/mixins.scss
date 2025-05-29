@@ -1,29 +1,28 @@
-$smq: 576px;
-$mdq: 768px;
-$lgq: 992px;
-$xlq: 1200px;
+@use "sass:map";
+@use "sass:math";
 
-@mixin mq($size) {
-  @if $size == sm {
-    @media (min-width: $smq) {
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+@mixin mq($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+    @if $value == 0 {
       @content;
-    }
-  } @else if $size == md {
-    @media (min-width: $mdq) {
-      @content;
-    }
-  } @else if $size == lg {
-    @media (min-width: $lgq) {
-      @content;
-    }
-  } @else if $size == xl {
-    @media (min-width: $xlq) {
-      @content;
+    } @else {
+      @media (min-width: $value) {
+        @content;
+      }
     }
   }
 }
 
-@mixin container {
+@mixin container() {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
@@ -41,7 +40,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin topSpace {
+@mixin topSpace() {
   margin-top: 5rem;
 
   @include mq(lg) {
@@ -49,29 +48,31 @@ $xlq: 1200px;
   }
 }
 
-@mixin space {
+@mixin space() {
   margin-top: 6.25rem;
   margin-bottom: 6.25rem;
 }
 
-@mixin gap {
+@mixin gap() {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
 
-@mixin medio {
+@mixin medio() {
   position: relative;
   display: block;
   width: 100%;
   height: 0;
-  padding-bottom: 56.25%;
+  padding-bottom: math.percentage(
+    math.div(9, 16)
+  ); // 56.25% pero usando math.div
 
   & > img {
     object-fit: cover;
   }
 }
 
-@mixin h1m {
+@mixin h1m() {
   color: var(--primary-base);
   font-weight: 800;
   font-size: 1.812rem;
@@ -91,7 +92,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin h2m {
+@mixin h2m() {
   color: var(--primary-base);
   font-size: 1.312rem;
   @include mq(sm) {
@@ -108,7 +109,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin h3m {
+@mixin h3m() {
   color: var(--primary-base);
   font-size: 1.188rem;
 
@@ -126,7 +127,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin h4m {
+@mixin h4m() {
   color: var(--primary-base);
   font-size: 1.125rem;
   @include mq(sm) {
@@ -143,7 +144,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin h5m {
+@mixin h5m() {
   color: var(--primary-base);
   font-size: 1.062rem;
   @include mq(sm) {
@@ -160,7 +161,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin h6m {
+@mixin h6m() {
   color: var(--primary-base);
   font-size: 1rem;
   @include mq(sm) {
@@ -177,7 +178,7 @@ $xlq: 1200px;
   }
 }
 
-@mixin cta {
+@mixin cta() {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
@@ -186,22 +187,24 @@ $xlq: 1200px;
   font-weight: bold;
   padding: 0.625rem 1.562rem;
   border-radius: 1.875rem;
-  display: inline-block;
   color: #565656 !important;
   outline: initial;
   border: initial;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(115, 185, 255, 0.5);
   }
+
   &:hover {
-    background-color: var(--secondary-base);
+    background-color: var(--secondary-dark, var(--secondary-base));
+    transform: translateY(-1px);
   }
 }
 
-@mixin card {
+@mixin card() {
   padding: 1.25rem;
   border-radius: 1.25rem;
   box-shadow: 0 0 0.312rem rgba(0, 0, 0, 0.1);

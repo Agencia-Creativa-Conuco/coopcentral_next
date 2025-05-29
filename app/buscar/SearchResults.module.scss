@@ -1,10 +1,11 @@
 @use "@/styles/mixins.scss" as *;
 
 .container {
-  @include container();
   padding-top: 2rem;
   padding-bottom: 4rem;
   min-height: 60vh;
+  @include gap();
+  @include container();
 }
 
 .header {

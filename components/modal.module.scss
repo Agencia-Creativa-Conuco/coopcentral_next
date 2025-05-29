@@ -46,6 +46,7 @@
     display: flex;
     left: 0;
     opacity: 1;
+    pointer-events: all;
     right: 0;
     transition: opacity 0.25s ease-out;
     align-items: baseline;
@@ -106,6 +107,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 10001;
   svg {
     fill: var(--primary-base);
     display: inline-block;

@@ -1,33 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const API_URL =
-  process.env.NEXT_PUBLIC_WORDPRESS_API_URL ||
-  process.env.WORDPRESS_URL ||
-  "https://coopcentral.do";
+import { getFeaturedMediaById } from "@/lib/wordpress";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
-    const response = await fetch(`${API_URL}/wp-json/wp/v2/media/${id}`, {
-      next: { revalidate: 3600 }, // Cache por 1 hora
-    });
-
-    if (!response.ok) {
-      return NextResponse.json({ error: "Media not found" }, { status: 404 });
+    if (!id) {
+      return NextResponse.json(
+        { error: "ID de media requerido" },
+        { status: 400 }
+      );
     }
 
-    const media = await response.json();
+    // Obtener la media desde WordPress
+    const media = await getFeaturedMediaById(parseInt(id));
 
-    // Redirigir a la URL de la imagen
+    if (!media || !media.source_url) {
+      return NextResponse.json(
+        { error: "Media no encontrada" },
+        { status: 404 }
+      );
+    }
+
+    // Redirigir a la URL de la imagen en WordPress
     return NextResponse.redirect(media.source_url);
   } catch (error) {
-    console.error("Error fetching media:", error);
+    console.error("Error al obtener media:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Error interno del servidor" },
       { status: 500 }
     );
   }
