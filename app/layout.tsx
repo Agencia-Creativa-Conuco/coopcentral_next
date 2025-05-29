@@ -13,6 +13,7 @@ import { getMenu, getSettings } from "@/lib/wordpress";
 import CustomProvider from "@/components/theme/custom-provider";
 import Modal from "@/components/modal";
 import Footer from "@/components/footer";
+import Chatbot from "@/components/chatbot/chatbot";
 
 const font = FontSans({
   subsets: ["latin"],
@@ -101,6 +102,7 @@ export default async function RootLayout({
             {children}
             <Footer menu={menuFooter} settings={settings} />
             <Modal />
+            <Chatbot />
           </CustomProvider>
         </ThemeProvider>
         <Analytics />

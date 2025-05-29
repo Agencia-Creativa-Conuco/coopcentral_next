@@ -1,6 +1,6 @@
 import {
   getPostBySlug,
-  getAllPosts,
+  getAllPostsSimple,
   getPageBySlug,
   getAllPages,
 } from "@/lib/wordpress";
@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import Post from "@/components/post";
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await getAllPostsSimple();
   const pages = await getAllPages();
 
   const data = [...posts, ...pages];

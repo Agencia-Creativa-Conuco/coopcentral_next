@@ -55,6 +55,72 @@ export async function getAllPosts(filterParams?: {
   tag?: string;
   category?: string;
   search?: string;
+  page?: number;
+  per_page?: number;
+}): Promise<{ posts: Post[]; totalPages: number; currentPage: number }> {
+  const query: Record<string, any> = {
+    _embed: true,
+    per_page: filterParams?.per_page || 10,
+    page: filterParams?.page || 1,
+  };
+
+  if (filterParams?.search) {
+    query.search = filterParams.search;
+
+    if (filterParams?.author) {
+      query.author = filterParams.author;
+    }
+    if (filterParams?.tag) {
+      query.tags = filterParams.tag;
+    }
+    if (filterParams?.category) {
+      query.categories = filterParams.category;
+    }
+  } else {
+    if (filterParams?.author) {
+      query.author = filterParams.author;
+    }
+    if (filterParams?.tag) {
+      query.tags = filterParams.tag;
+    }
+    if (filterParams?.category) {
+      query.categories = filterParams.category;
+    }
+  }
+
+  const url = getUrl("/wp-json/wp/v2/posts", query);
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": "Next.js WordPress Client",
+    },
+  });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+
+  const posts = await response.json();
+  const totalPosts = parseInt(response.headers.get("X-WP-Total") || "0");
+  const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "0");
+
+  return {
+    posts,
+    totalPages,
+    currentPage: query.page,
+  };
+}
+
+// Mantener la función original para compatibilidad
+export async function getAllPostsSimple(filterParams?: {
+  author?: string;
+  tag?: string;
+  category?: string;
+  search?: string;
 }): Promise<Post[]> {
   const query: Record<string, any> = {
     _embed: true,
