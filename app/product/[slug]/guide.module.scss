@@ -14,22 +14,26 @@
   @include gap();
 }
 
-.link {
-}
-
 .downloadCard {
-  max-width: 57rem;
+  max-width: 35.625rem;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq(md) {
+    gap: 1.25rem;
+    grid-template-columns: 9.375rem 1fr;
+  }
 }
 
 .content {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   position: relative;
   z-index: 2;
   @include mq(md) {
     text-align: left;
     margin: 0;
+    order: 2;
   }
 }
 
@@ -39,20 +43,26 @@
   text-align: center;
 }
 
-.contentIcon {
+.downloadIcon {
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   svg {
     margin: 0 auto;
   }
 }
 
-.contentLink {
+.link {
+  @include cta();
 }
 
 .title {
-  color: white;
+  text-align: center;
   text-transform: uppercase;
+  color: white;
+  margin: 0;
+  @include mq(md) {
+    text-align: left;
+  }
 }
 
 .formTitle {
@@ -65,7 +75,7 @@
 
 .form {
   background-color: white;
-  max-width: 65rem;
+  max-width: 40rem;
   margin: 0 auto;
   @include card();
 }

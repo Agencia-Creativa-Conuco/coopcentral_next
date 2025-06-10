@@ -28,14 +28,16 @@ export default async function ProductGuide({ page }: Props) {
                 <h2 className={styles.title}>{product_guide_title}</h2>
               </div>
               <div className={styles.downloadBox}>
-                <div className={styles.contentIcon}>
+                <div className={styles.downloadIcon}>
                   <CloudIcon />
                 </div>
-                <div className={styles.contentLink}>
-                  <Link href={getURL(product_guide_cta)} download>
-                    DESCARGAR
-                  </Link>
-                </div>
+                <Link
+                  href={getURL(product_guide_cta)}
+                  download
+                  className={styles.link}
+                >
+                  DESCARGAR
+                </Link>
               </div>
             </div>
           </div>
