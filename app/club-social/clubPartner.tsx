@@ -24,7 +24,7 @@ export default async function ClubPartner({ page }: Props) {
                 height={800}
               />
             </div>
-            <h2 className={styles.title}>
+            <h2 className={styles.title} style={{ color: "white" }}>
               {data.social_club_partner_beneficts_title}
             </h2>
             <ul className={styles.list}>
@@ -52,7 +52,7 @@ export default async function ClubPartner({ page }: Props) {
                 height={800}
               />
             </div>
-            <h2 className={styles.title}>
+            <h2 className={styles.title} style={{ color: "white" }}>
               {data.social_club_partner_must_title}
             </h2>
             <ul className={styles.list}>
