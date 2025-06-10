@@ -110,56 +110,58 @@ export default function LoanCalculator() {
   return (
     <div className={styles.calculator}>
       <div className={styles.form}>
-        <div className={styles.inputGroup}>
-          <label htmlFor="amount" className={styles.label}>
-            Monto del préstamo
-          </label>
-          <input
-            id="amount"
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className={`${styles.input} ${errors.amount ? styles.error : ""}`}
-            placeholder="Ej: 100000"
-          />
-          {errors.amount && (
-            <span className={styles.errorText}>{errors.amount}</span>
-          )}
-        </div>
+        <div className={styles.inputs}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="amount" className={styles.label}>
+              Monto del préstamo
+            </label>
+            <input
+              id="amount"
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className={`${styles.input} ${errors.amount ? styles.error : ""}`}
+              placeholder="Ej: 100000"
+            />
+            {errors.amount && (
+              <span className={styles.errorText}>{errors.amount}</span>
+            )}
+          </div>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="term" className={styles.label}>
-            Plazo (meses)
-          </label>
-          <input
-            id="term"
-            type="number"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-            className={`${styles.input} ${errors.term ? styles.error : ""}`}
-            placeholder="Ej: 60"
-          />
-          {errors.term && (
-            <span className={styles.errorText}>{errors.term}</span>
-          )}
-        </div>
+          <div className={styles.inputGroup}>
+            <label htmlFor="term" className={styles.label}>
+              Plazo (meses)
+            </label>
+            <input
+              id="term"
+              type="number"
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+              className={`${styles.input} ${errors.term ? styles.error : ""}`}
+              placeholder="Ej: 60"
+            />
+            {errors.term && (
+              <span className={styles.errorText}>{errors.term}</span>
+            )}
+          </div>
 
-        <div className={styles.inputGroup}>
-          <label htmlFor="rate" className={styles.label}>
-            Tasa de interés anual (%)
-          </label>
-          <input
-            id="rate"
-            type="number"
-            step="0.01"
-            value={rate}
-            onChange={(e) => setRate(e.target.value)}
-            className={`${styles.input} ${errors.rate ? styles.error : ""}`}
-            placeholder="Ej: 12.5"
-          />
-          {errors.rate && (
-            <span className={styles.errorText}>{errors.rate}</span>
-          )}
+          <div className={styles.inputGroup}>
+            <label htmlFor="rate" className={styles.label}>
+              Tasa de interés anual (%)
+            </label>
+            <input
+              id="rate"
+              type="number"
+              step="0.01"
+              value={rate}
+              onChange={(e) => setRate(e.target.value)}
+              className={`${styles.input} ${errors.rate ? styles.error : ""}`}
+              placeholder="Ej: 12.5"
+            />
+            {errors.rate && (
+              <span className={styles.errorText}>{errors.rate}</span>
+            )}
+          </div>
         </div>
 
         <button onClick={calculateLoan} className={styles.calculateButton}>
@@ -168,24 +170,30 @@ export default function LoanCalculator() {
       </div>
 
       {calculation && (
-        <div className={styles.results}>
-          <h3 className={styles.resultsTitle}>Resultados</h3>
-          <div className={styles.resultItem}>
-            <span>Pago mensual:</span>
-            <strong>{formatCurrency(calculation.monthlyPayment)}</strong>
+        <div className={styles.resultsContainer}>
+          <div className={styles.results}>
+            <div className={styles.resultItem}>
+              <span className={styles.resultTitle}>Pago mensual:</span>
+              <strong className={styles.resultValue}>
+                {formatCurrency(calculation.monthlyPayment)}
+              </strong>
+            </div>
+            <div className={styles.resultItem}>
+              <span className={styles.resultTitle}>Total de intereses:</span>
+              <strong className={styles.resultValue}>
+                {formatCurrency(calculation.totalInterest)}
+              </strong>
+            </div>
+            <div className={styles.resultItem}>
+              <span className={styles.resultTitle}>Monto total a pagar:</span>
+              <strong className={styles.resultValue}>
+                {formatCurrency(calculation.totalAmount)}
+              </strong>
+            </div>
           </div>
-          <div className={styles.resultItem}>
-            <span>Total de intereses:</span>
-            <strong>{formatCurrency(calculation.totalInterest)}</strong>
-          </div>
-          <div className={styles.resultItem}>
-            <span>Monto total a pagar:</span>
-            <strong>{formatCurrency(calculation.totalAmount)}</strong>
-          </div>
-
           <button
             onClick={() => setShowTable(!showTable)}
-            className={styles.toggleButton}
+            className={styles.button}
           >
             {showTable ? "Ocultar" : "Ver"} tabla de amortización
           </button>
@@ -193,23 +201,31 @@ export default function LoanCalculator() {
           {showTable && (
             <div className={styles.tableContainer}>
               <table className={styles.table}>
-                <thead>
+                <thead className={styles.thead}>
                   <tr>
-                    <th>Mes</th>
-                    <th>Pago</th>
-                    <th>Capital</th>
-                    <th>Interés</th>
-                    <th>Balance</th>
+                    <th className={styles.th}>Mes</th>
+                    <th className={styles.th}>Pago</th>
+                    <th className={styles.th}>Capital</th>
+                    <th className={styles.th}>Interés</th>
+                    <th className={styles.th}>Balance</th>
                   </tr>
                 </thead>
                 <tbody>
                   {calculation.amortizationTable.map((row) => (
-                    <tr key={row.month}>
-                      <td>{row.month}</td>
-                      <td>{formatCurrency(row.payment)}</td>
-                      <td>{formatCurrency(row.principal)}</td>
-                      <td>{formatCurrency(row.interest)}</td>
-                      <td>{formatCurrency(row.balance)}</td>
+                    <tr key={row.month} className={styles.tr}>
+                      <td className={styles.td}>{row.month}</td>
+                      <td className={styles.td}>
+                        {formatCurrency(row.payment)}
+                      </td>
+                      <td className={styles.td}>
+                        {formatCurrency(row.principal)}
+                      </td>
+                      <td className={styles.td}>
+                        {formatCurrency(row.interest)}
+                      </td>
+                      <td className={styles.td}>
+                        {formatCurrency(row.balance)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

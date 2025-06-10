@@ -25,15 +25,16 @@
   }
 }
 
-.inputWrapper {
+.inputGroup {
   display: flex;
   flex-direction: column;
 
   label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--primary-base);
-    font-size: 0.9rem;
+    color: #484848;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0;
+    display: block;
   }
 }
 
@@ -41,7 +42,7 @@
   display: block;
   width: 100%;
   margin: 0 auto;
-  border: 2px solid #e0e0e0;
+  border: 2px solid transparent;
   line-height: 1;
   padding: 15px;
   border-radius: 0.5rem;
@@ -50,6 +51,8 @@
   color: var(--primary-base);
   font-size: 1rem;
   transition: all 0.3s ease;
+  background-color: #26974711;
+  outline: none;
 
   &:focus {
     outline: none;
@@ -71,11 +74,11 @@
   }
 }
 
-.inputError {
-  border-color: #dc3545 !important;
+.errorText {
+  color: #dc3545 !important;
 
   &:focus {
-    border-color: #dc3545 !important;
+    color: #dc3545 !important;
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
   }
 }
@@ -92,6 +95,7 @@
   grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 
   @include mq(md) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -102,26 +106,27 @@
   background: #f8f9fa;
   padding: 1.5rem;
   border-radius: 1rem;
-  text-align: center;
+  text-align: left;
   border: 2px solid #e9ecef;
+  margin-top: 2rem;
 }
 
 .resultTitle {
   color: #484848;
   text-transform: uppercase;
   font-weight: bold;
-  text-align: center;
-  margin: 0 0 0.5rem 0;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  margin: 0;
+  display: block;
 }
 
 .resultValue {
-  text-align: center;
   margin: 0;
   font-weight: 900;
   color: var(--primary-base);
   font-size: 1.5rem;
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: #26974711;
 
   @include mq(md) {
     font-size: 1.3rem;
@@ -139,7 +144,7 @@
 }
 
 .calculateButton {
-  display: inline-block;
+  display: block;
   background-color: var(--secondary-base);
   color: var(--text-color-main);
   padding: 1rem 2rem;
@@ -153,6 +158,7 @@
   font-size: 1rem;
   transition: all 0.3s ease;
   min-width: 200px;
+  margin: 0 auto;
 
   &:hover {
     background-color: var(--secondary-dark);
@@ -166,7 +172,8 @@
 }
 
 .button {
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   background-color: var(--primary-base);
   color: white;
   padding: 1rem 2rem;
@@ -196,7 +203,7 @@
   overflow-x: auto;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .table {
@@ -218,6 +225,10 @@
 }
 
 .tr {
+  &:nth-child(odd) {
+    background-color: #26974711;
+  }
+
   &:nth-of-type(odd) {
     background-color: #f8f9fa;
   }
@@ -246,29 +257,9 @@
   border: none;
   word-break: normal;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
 
   @include mq(sm) {
-    font-size: 0.95rem;
-  }
-}
-
-// Responsive adjustments
-@include mq(sm) {
-  .table {
-    font-size: 0.9rem;
-  }
-
-  .th,
-  .td {
-    padding: 0.5rem 0.25rem;
-  }
-
-  .th {
-    font-size: 0.8rem;
-  }
-
-  .td {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
