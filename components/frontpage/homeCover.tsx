@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import dynamic from "next/dynamic";
 import styles from "./homeCover.module.scss";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,12 +9,7 @@ import {
   useClientReady,
   useIntersectionObserver,
 } from "@/hooks/useClientReady";
-
-// Carga diferida del componente Carousel
-const Carousel = dynamic(() => import("react-slick"), {
-  ssr: false,
-  loading: () => <div className={styles.carouselLoading}>Cargando...</div>,
-});
+import Carousel from "react-slick";
 
 interface Props {
   slides: any[];
