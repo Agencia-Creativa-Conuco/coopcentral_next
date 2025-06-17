@@ -43,8 +43,8 @@ export default function HomeCover({
   const { isVisible, setElement } = useIntersectionObserver(0.1);
   const sectionRef = useRef<HTMLElement>(null);
 
-  let slider1: any;
-  let slider2: any;
+  const [slider1, setSlider1] = useState();
+  const [slider2, setSlider2] = useState();
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -79,7 +79,10 @@ export default function HomeCover({
             arrows={false}
             fade
             asNavFor={nav2}
-            ref={(slider: any) => (slider1 = slider)}
+            ref={(slider: any) => {
+              setSlider1(slider);
+              return slider;
+            }}
           >
             {items.map((slide, index) => {
               const { featured_media, meta_box } = slide;
@@ -216,7 +219,10 @@ export default function HomeCover({
               </ul>
             )}
             asNavFor={nav1}
-            ref={(slider: any) => (slider2 = slider)}
+            ref={(slider: any) => {
+              setSlider2(slider);
+              return slider;
+            }}
           >
             {items.map((slide, index) => {
               const { title, meta_box } = slide;

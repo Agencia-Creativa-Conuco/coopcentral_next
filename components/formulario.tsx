@@ -62,7 +62,7 @@ export default function Form({
               portalId={hs_id}
               formId={formId}
               onReady={() => {
-                console.log("Form ready");
+                // console.log("Form ready");
               }}
               onFormSubmitted={() => {
                 setSubmited(true);
