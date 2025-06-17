@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
   },
   images: {
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
