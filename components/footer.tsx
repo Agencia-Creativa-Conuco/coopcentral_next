@@ -70,6 +70,7 @@ export default function Footer({ menu, settings }: Props) {
                   width="83"
                   height="100"
                   lang="es"
+                  unoptimized
                 />
               </Link>
             </span>
