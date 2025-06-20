@@ -45,7 +45,6 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-<<<<<<< HEAD
       { url: "/favicons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicons/favicon-cactus.svg", sizes: "any" },
@@ -56,11 +55,6 @@ export const metadata: Metadata = {
         sizes: "180x180",
         type: "image/png",
       },
-=======
-      // { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      // { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: icon.src, sizes: "any" },
->>>>>>> 9854f4ad3ef29cb4ea59c29fba79734a494982e7
     ],
     // apple: [
     //   { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
