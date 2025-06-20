@@ -45,13 +45,24 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicons/favicon-cactus.svg", sizes: "any" },
+      {
+        url: "https://coopcentral.do/wp-content/uploads/2021/07/cropped-icono-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "https://coopcentral.do/wp-content/uploads/2021/07/cropped-icono-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "https://coopcentral.do/wp-content/uploads/2021/07/cropped-icono-192x192.png",
+        sizes: "any",
+      },
     ],
     apple: [
       {
-        url: "/favicons/apple-touch-icon.png",
+        url: "https://coopcentral.do/wp-content/uploads/2021/07/cropped-icono-180x180.png",
         sizes: "180x180",
         type: "image/png",
       },
