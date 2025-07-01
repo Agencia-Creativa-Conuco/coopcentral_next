@@ -543,7 +543,7 @@ export async function searchPosts(
     const requests = endpoints.map(async ({ endpoint, type }) => {
       try {
         const url = `${API_URL}/wp-json/wp/v2/${endpoint}?${searchParams}`;
-        console.log(`Fetching: ${url}`); // Debug log
+        // console.log(`Fetching: ${url}`); // Debug log
 
         const response = await fetch(url, {
           next: { revalidate: 300 },

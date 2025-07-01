@@ -60,6 +60,10 @@ export default async function Page({ searchParams }: Props) {
 
   const posts = await Promise.all(
     postsData.map(async (post) => {
+      if (post.featured_media === 0) {
+        return post;
+      }
+      // Si no hay featured_media, lo dejamos como n
       const featured_media = await getFeaturedMediaById(post.featured_media);
       return {
         ...post,
@@ -84,13 +88,19 @@ export default async function Page({ searchParams }: Props) {
                 <Link className={styles.link} href={getURL(link)}>
                   <div className={styles.cardImage}>
                     <div className={styles.image}>
-                      <Image
-                        src={featured_media?.source_url || "/default-image.jpg"}
-                        alt={title?.rendered || "Post"}
-                        width={1920}
-                        height={1080}
-                        priority={isPrincipal}
-                      />
+                      {/* @ts-ignore */}
+                      {featured_media?.source_url ? (
+                        <Image
+                          src={
+                            // @ts-ignore
+                            featured_media?.source_url || "/default-image.jpg"
+                          }
+                          alt={title?.rendered || "Post"}
+                          width={1920}
+                          height={1080}
+                          priority={isPrincipal}
+                        />
+                      ) : null}
                     </div>
                   </div>
                   <div className={styles.cardBody}>
