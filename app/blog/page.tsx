@@ -55,7 +55,7 @@ export default async function Page({ searchParams }: Props) {
     currentPage: actualPage,
   } = await getAllPosts({
     page: currentPage,
-    per_page: 9, // Número de posts por página
+    per_page: 13, // Número de posts por página
   });
 
   const posts = await Promise.all(

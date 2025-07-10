@@ -415,10 +415,13 @@ export async function getAllSocial(filterParams?: {
   tag?: string;
   category?: string;
   search?: string;
-}): Promise<Post[]> {
+  page?: number;
+  per_page?: number;
+}): Promise<{ posts: Post[]; totalPages: number; currentPage: number }> {
   const query: Record<string, any> = {
     _embed: true,
-    per_page: 100,
+    per_page: filterParams?.per_page || 10,
+    page: filterParams?.page || 1,
   };
 
   if (filterParams?.search) {
@@ -446,7 +449,31 @@ export async function getAllSocial(filterParams?: {
   }
 
   const url = getUrl("/wp-json/wp/v2/social", query);
-  return wordpressFetch<Post[]>(url);
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": "Next.js WordPress Client",
+    },
+  });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+
+  const posts = await response.json();
+  const totalPosts = parseInt(response.headers.get("X-WP-Total") || "0");
+  const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "0");
+
+  return {
+    posts,
+    totalPages,
+    currentPage: query.page,
+  };
+  //return wordpressFetch<Post[]>(url);
 }
 
 export async function getAllSucursal(filterParams?: {
@@ -484,7 +511,7 @@ export async function getAllSucursal(filterParams?: {
     }
   }
 
-  const url = getUrl("/wp-json/wp/v2/social", query);
+  const url = getUrl("/wp-json/wp/v2/sucursal", query);
   return wordpressFetch<Post[]>(url);
 }
 

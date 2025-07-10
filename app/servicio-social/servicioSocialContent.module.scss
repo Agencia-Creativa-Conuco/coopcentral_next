@@ -1,7 +1,6 @@
 @use "@/styles/mixins.scss" as *;
 
 .section {
-  padding-bottom: 20%;
   padding-top: 3.75rem;
   margin-top: 9.375rem;
   position: relative;
@@ -104,32 +103,5 @@
   img {
     object-fit: cover;
     aspect-ratio: 16/9;
-  }
-}
-
-.greenDeco {
-  position: absolute;
-  display: block;
-  top: 100%;
-  left: 3%;
-  background-color: var(--primary-base);
-  box-sizing: content-box;
-  border-radius: 50%;
-  width: 550%;
-  padding-bottom: 550%;
-  transform: translate(-45%, 0);
-  z-index: 2;
-  /*DARK GREEN */
-  &:before {
-    content: "";
-    position: absolute;
-    background-color: var(--primary-dark);
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    left: 0;
-    top: 1%;
-    transform: translate(-4%, 0);
-    z-index: 2;
   }
 }

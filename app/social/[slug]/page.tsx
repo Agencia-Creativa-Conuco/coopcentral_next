@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 import Post from "@/components/post";
 
 export async function generateStaticParams() {
-  const posts = await getAllSocial();
+  const { posts } = await getAllSocial();
 
   return posts.map((post) => ({
     slug: post.slug,

@@ -1,12 +1,17 @@
 import React from "react";
 import ServicioSocialCover from "./servicioSocialCover";
-import { getFeaturedMediaById, getPageBySlug } from "@/lib/wordpress";
+import {
+  getAllSocial,
+  getFeaturedMediaById,
+  getPageBySlug,
+} from "@/lib/wordpress";
 import ServicioSocialContent from "./servicioSocialContent";
 import { Metadata } from "next";
+import Pagination from "@/components/pagination";
+import styles from "./page.module.scss";
 
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ page?: string }>;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -61,13 +66,44 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function page() {
+export default async function Page({ searchParams }: Props) {
+  const resolvedSearchParams = await searchParams;
+  const currentPage = parseInt(resolvedSearchParams.page || "1");
   const page: any = await getPageBySlug("servicio-social");
+  const {
+    posts: postsData,
+    totalPages,
+    currentPage: actualPage,
+  } = await getAllSocial({
+    page: currentPage,
+    per_page: 10, // Número de posts por página
+  });
+
+  const posts = await Promise.all(
+    postsData.map(async (post) => {
+      if (post.featured_media === 0) {
+        return post;
+      }
+      // Si no hay featured_media, lo dejamos como n
+      const featured_media = await getFeaturedMediaById(post.featured_media);
+      return {
+        ...post,
+        featured_media: featured_media,
+      };
+    })
+  );
 
   return (
-    <main>
+    <main className={styles.main}>
       <ServicioSocialCover page={page} />
-      <ServicioSocialContent page={page} />
+      <ServicioSocialContent page={page} posts={posts} />
+      <Pagination
+        currentPage={actualPage}
+        totalPages={totalPages}
+        basePath="/servicio-social"
+        className={styles.pagination}
+      />
+      <div className={styles.greenDeco} />
     </main>
   );
 }

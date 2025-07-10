@@ -6,12 +6,14 @@ interface Props {
   currentPage: number;
   totalPages: number;
   basePath?: string;
+  className?: string;
 }
 
 export default function Pagination({
   currentPage,
   totalPages,
   basePath = "/blog",
+  className,
 }: Props) {
   if (totalPages <= 1) return null;
 
@@ -26,7 +28,7 @@ export default function Pagination({
   const hasNext = currentPage < totalPages;
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className || ""}`}>
       {hasPrevious && (
         <Link href={generatePageUrl(currentPage - 1)} className={styles.link}>
           <em className={styles.text}>Anterior</em>
