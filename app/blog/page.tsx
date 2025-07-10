@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-const host = process.env.WORDPRESS_URL;
-
 export async function generateMetadata(): Promise<Metadata> {
   const pageTitle = "Blog - Coopcentral";
   const pageDescription =

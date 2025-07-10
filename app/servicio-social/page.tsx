@@ -69,15 +69,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page({ searchParams }: Props) {
   const resolvedSearchParams = await searchParams;
   const currentPage = parseInt(resolvedSearchParams.page || "1");
-  const page: any = await getPageBySlug("servicio-social");
-  const {
-    posts: postsData,
-    totalPages,
-    currentPage: actualPage,
-  } = await getAllSocial({
-    page: currentPage,
-    per_page: 10, // Número de posts por página
-  });
+  const [page, { posts: postsData, totalPages, currentPage: actualPage }] =
+    await Promise.all([
+      getPageBySlug("servicio-social"),
+      getAllSocial({
+        page: currentPage,
+        per_page: 10, // Número de posts por página
+      }),
+    ]);
 
   const posts = await Promise.all(
     postsData.map(async (post) => {
